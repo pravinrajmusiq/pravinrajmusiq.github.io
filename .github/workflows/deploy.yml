@@ -6,7 +6,7 @@ on:
   workflow_dispatch:
 
 permissions:
-  contents: read
+  contents: write  # Required for peaceiris to push to gh-pages branch
   pages: write
   id-token: write
 
