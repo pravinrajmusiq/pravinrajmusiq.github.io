@@ -3,6 +3,7 @@ import { Link } from 'react-router-dom';
 import { ProjectPageTransition } from '../../components/project-details/ProjectPageTransition';
 import { ProjectHero } from '../../components/project-details/ProjectHero';
 import { Section3_Results } from '../../components/project-details/Section3_Results';
+import { assetPath } from '../../utils/assetPath';
 
 export default function BoxDesignProject() {
   const projectData = {
@@ -10,7 +11,7 @@ export default function BoxDesignProject() {
       title: 'Box Design',
       category: 'Packaging • Product Design • Branding',
       year: '2024',
-      heroImage: '/box.jpg',
+      heroImage: assetPath('/box.jpg'),
       gradient: 'from-orange-500 to-red-500',
     },
     overview: {
@@ -20,44 +21,44 @@ export default function BoxDesignProject() {
         'We developed a comprehensive packaging design system considering 3D form, materials, and print specifications. Each design was optimized for both aesthetics and production feasibility.',
       results:
         'Delivered packaging designs that increased brand recognition and shelf appeal. Clients reported positive feedback from retailers and consumers.',
-      image1: '/box.jpg',
-      image2: '/ca1.png',
+      image1: assetPath('/box.jpg'),
+      image2: assetPath('/ca1.png'),
     },
     features: [
       {
         title: '3D Packaging',
         description: 'Designs that consider the full 3D form and how it unfolds on shelves.',
-        image: '/box.jpg',
+        image: assetPath('/box.jpg'),
         icon: '📦',
       },
       {
         title: 'Material Selection',
         description: 'Thoughtful material choices that enhance the product experience.',
-        image: '/mp.png',
+        image: assetPath('/mp.png'),
         icon: '✨',
       },
       {
         title: 'Brand Integration',
         description: 'Seamless integration of brand elements across all packaging surfaces.',
-        image: '/magazine.png',
+        image: assetPath('/magazine.png'),
         icon: '🎨',
       },
       {
         title: 'Production Ready',
         description: 'Print-ready files with proper dielines and specifications.',
-        image: '/ca1.png',
+        image: assetPath('/ca1.png'),
         icon: '🖨️',
       },
     ],
     results: {
       logoText: 'BOX DESIGN',
-      flipbookImages: ['/box.jpg', '/ca1.png', '/mp.png', '/magazine.png'],
+      flipbookImages: [assetPath('/box.jpg'), assetPath('/ca1.png'), assetPath('/mp.png'), assetPath('/magazine.png')],
       testimonial: {
         quote:
           'The box design perfectly captured our brand essence. The packaging has become a talking point for our customers and has helped drive sales.',
         author: 'Client',
         role: 'Product Manager',
-        avatar: '/box.jpg',
+        avatar: assetPath('/box.jpg'),
       },
     },
   };

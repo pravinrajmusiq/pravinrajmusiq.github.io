@@ -1,6 +1,7 @@
 import { useState } from 'react';
 import { Link } from 'react-router-dom';
 import { motion } from 'framer-motion';
+import { assetPath } from '../utils/assetPath';
 
 const projects = [
   {
@@ -9,7 +10,7 @@ const projects = [
     category: 'Webflow Development',
     description:
       'The product design & branding studio. Founded by designers, The Bang is an award winning design studio.',
-    image: '/ca1.png',
+    image: assetPath('/ca1.png'),
     gradient: 'from-purple-500 to-pink-500',
   },
   {
@@ -18,7 +19,7 @@ const projects = [
     category: 'Webflow Development, Web Design, Branding',
     description:
       'Aid Studio, based in Romania, operates as an interior design and architecture studio.',
-    image: '/mp.png',
+    image: assetPath('/mp.png'),
     gradient: 'from-blue-500 to-cyan-500',
   },
   {
@@ -27,7 +28,7 @@ const projects = [
     category: 'Webflow Development',
     description:
       'Avazia are a technology and engineering consultancy. Experts in data acquisition, control.',
-    image: '/magazine.png',
+    image: assetPath('/magazine.png'),
     gradient: 'from-green-500 to-teal-500',
   },
   {
@@ -35,7 +36,7 @@ const projects = [
     link: '/projects/box-design',
     category: 'Webflow Development, Web Design, Branding',
     description: 'Immersive storytelling experiences utilising augmented reality.',
-    image: '/box.jpg',
+    image: assetPath('/box.jpg'),
     gradient: 'from-orange-500 to-red-500',
   },
 ];

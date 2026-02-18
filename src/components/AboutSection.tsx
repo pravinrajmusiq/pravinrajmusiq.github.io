@@ -1,5 +1,6 @@
 import { motion, useScroll, useTransform } from 'framer-motion';
 import { useRef } from 'react';
+import { assetPath } from '../utils/assetPath';
 
 export function AboutSection() {
   const sectionRef = useRef<HTMLElement>(null);
@@ -74,7 +75,7 @@ export function AboutSection() {
         >
           <div className="absolute inset-0 bg-gradient-to-br from-gray-800 to-black opacity-50 z-10" />
           <img
-            src="/my.jpg" // Add your image as about-image.jpg in the public folder
+            src={assetPath('/my.jpg')}
             alt="Workspace"
             className="w-full h-full object-cover grayscale hover:grayscale-0 transition-all duration-700"
           />

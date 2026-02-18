@@ -2,6 +2,7 @@ import { motion, useScroll, useTransform } from 'framer-motion';
 import { useRef, useEffect, useState } from 'react';
 import { Canvas } from '@react-three/fiber';
 import { OrbitControls, Sphere, MeshDistortMaterial } from '@react-three/drei';
+import { assetPath } from '../../utils/assetPath';
 
 interface ProjectHeroProps {
   title: string;
@@ -27,7 +28,7 @@ export function ProjectHero({ title, category, year, heroImage, gradient }: Proj
   useEffect(() => {
     if (!audioPlayed) {
       try {
-        const audio = new Audio('/sounds/whoosh.mp3');
+        const audio = new Audio(assetPath('/sounds/whoosh.mp3'));
         audio.volume = 0.3;
         audio.play().catch(() => {});
       } catch {
@@ -125,7 +126,11 @@ export function ProjectHero({ title, category, year, heroImage, gradient }: Proj
         </div>
       </div>
 
-      <div className="absolute inset-0 opacity-10 pointer-events-none z-10 bg-[url(\'/grain.png\')] bg-cover" aria-hidden="true" />
+      <div
+        className="absolute inset-0 opacity-10 pointer-events-none z-10 bg-cover"
+        style={{ backgroundImage: `url('${assetPath('/grain.png')}')` }}
+        aria-hidden="true"
+      />
     </section>
   );
 }

@@ -3,6 +3,7 @@ import { Link } from 'react-router-dom';
 import { ProjectPageTransition } from '../../components/project-details/ProjectPageTransition';
 import { ProjectHero } from '../../components/project-details/ProjectHero';
 import { Section3_Results } from '../../components/project-details/Section3_Results';
+import { assetPath } from '../../utils/assetPath';
 
 export default function PosterProject() {
   const projectData = {
@@ -10,7 +11,7 @@ export default function PosterProject() {
       title: 'Poster',
       category: 'Graphic Design • Branding • Print',
       year: '2024',
-      heroImage: '/mp.png',
+      heroImage: assetPath('/mp.png'),
       gradient: 'from-blue-500 to-cyan-500',
     },
     overview: {
@@ -20,44 +21,44 @@ export default function PosterProject() {
         'We developed a cohesive visual language with bold typography, striking imagery, and thoughtful color palettes. Each poster was crafted to tell a story and leave a lasting impression.',
       results:
         'Delivered award-winning poster designs that strengthened brand recognition and engagement. Designs successfully translated across print and digital platforms.',
-      image1: '/mp.png',
-      image2: '/magazine.png',
+      image1: assetPath('/mp.png'),
+      image2: assetPath('/magazine.png'),
     },
     features: [
       {
         title: 'Visual Identity',
         description: 'Strong brand identity through consistent visual language and design principles.',
-        image: '/mp.png',
+        image: assetPath('/mp.png'),
         icon: '🎨',
       },
       {
         title: 'Typography',
         description: 'Bold typographic choices that enhance readability and visual impact.',
-        image: '/magazine.png',
+        image: assetPath('/magazine.png'),
         icon: '✍️',
       },
       {
         title: 'Color Theory',
         description: 'Strategic color palettes that evoke emotion and support brand messaging.',
-        image: '/box.jpg',
+        image: assetPath('/box.jpg'),
         icon: '🌈',
       },
       {
         title: 'Print Design',
         description: 'Print-ready designs optimized for various formats and sizes.',
-        image: '/ca1.png',
+        image: assetPath('/ca1.png'),
         icon: '📄',
       },
     ],
     results: {
       logoText: 'POSTER',
-      flipbookImages: ['/mp.png', '/magazine.png', '/box.jpg', '/ca1.png'],
+      flipbookImages: [assetPath('/mp.png'), assetPath('/magazine.png'), assetPath('/box.jpg'), assetPath('/ca1.png')],
       testimonial: {
         quote:
           'The poster designs exceeded our expectations. The creative team understood our vision and delivered stunning visuals that resonate with our audience.',
         author: 'Client',
         role: 'Marketing Manager',
-        avatar: '/mp.png',
+        avatar: assetPath('/mp.png'),
       },
     },
   };

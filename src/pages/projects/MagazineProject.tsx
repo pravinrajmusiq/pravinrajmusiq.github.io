@@ -3,6 +3,7 @@ import { Link } from 'react-router-dom';
 import { ProjectPageTransition } from '../../components/project-details/ProjectPageTransition';
 import { ProjectHero } from '../../components/project-details/ProjectHero';
 import { Section3_Results } from '../../components/project-details/Section3_Results';
+import { assetPath } from '../../utils/assetPath';
 
 export default function MagazineProject() {
   const projectData = {
@@ -10,7 +11,7 @@ export default function MagazineProject() {
       title: 'Magazine',
       category: 'Editorial Design • Layout • Publishing',
       year: '2024',
-      heroImage: '/magazine.png',
+      heroImage: assetPath('/magazine.png'),
       gradient: 'from-green-500 to-teal-500',
     },
     overview: {
@@ -20,44 +21,44 @@ export default function MagazineProject() {
         'We developed a comprehensive editorial design system with custom typography, grid systems, and visual hierarchy. Each spread was designed to guide the reader through the content seamlessly.',
       results:
         'Delivered multiple magazine issues with cohesive design language. Readers reported increased engagement and time spent with the publication.',
-      image1: '/magazine.png',
-      image2: '/box.jpg',
+      image1: assetPath('/magazine.png'),
+      image2: assetPath('/box.jpg'),
     },
     features: [
       {
         title: 'Editorial Layout',
         description: 'Thoughtful layout design that guides readers through content with clear hierarchy.',
-        image: '/magazine.png',
+        image: assetPath('/magazine.png'),
         icon: '📖',
       },
       {
         title: 'Grid Systems',
         description: 'Consistent grid systems that create rhythm and harmony across pages.',
-        image: '/mp.png',
+        image: assetPath('/mp.png'),
         icon: '📐',
       },
       {
         title: 'Visual Storytelling',
         description: 'Storytelling through imagery and typography that captivates readers.',
-        image: '/ca1.png',
+        image: assetPath('/ca1.png'),
         icon: '📝',
       },
       {
         title: 'Print Production',
         description: 'Print-ready files with proper bleed, color profiles, and specifications.',
-        image: '/box.jpg',
+        image: assetPath('/box.jpg'),
         icon: '🖨️',
       },
     ],
     results: {
       logoText: 'MAGAZINE',
-      flipbookImages: ['/magazine.png', '/box.jpg', '/ca1.png', '/mp.png'],
+      flipbookImages: [assetPath('/magazine.png'), assetPath('/box.jpg'), assetPath('/ca1.png'), assetPath('/mp.png')],
       testimonial: {
         quote:
           'The magazine design transformed our publication. The layouts are clean, professional, and engaging. Our readers love the new look.',
         author: 'Client',
         role: 'Editor in Chief',
-        avatar: '/magazine.png',
+        avatar: assetPath('/magazine.png'),
       },
     },
   };
