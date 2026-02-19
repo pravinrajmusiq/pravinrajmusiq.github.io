@@ -40,7 +40,7 @@ function App() {
   }, []);
 
   return (
-    <BrowserRouter basename={import.meta.env.BASE_URL === './' ? '/Portupolio' : import.meta.env.BASE_URL}>
+    <BrowserRouter basename={import.meta.env.BASE_URL}>
       <div className="bg-[var(--page-bg)] text-[var(--text-primary)]">
         <ThemeToggle />
         <CustomCursor />
