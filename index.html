@@ -1,8 +1,12 @@
 <!DOCTYPE html>
 <html lang="en">
   <head>
-    <base href="/Portupolio/" />
     <meta charset="UTF-8" />
+    <script>
+      if (location.pathname.endsWith('/Portupolio') && !location.pathname.endsWith('/')) {
+        location.replace(location.pathname + '/' + (location.search || '') + (location.hash || ''));
+      }
+    </script>
     <link rel="icon" type="image/svg+xml" href="/vite.svg" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover" />
     <meta name="description" content="Freelance Web Designer & Developer - Modern, responsive websites with smooth animations." />
