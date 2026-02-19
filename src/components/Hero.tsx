@@ -29,14 +29,14 @@ export function Hero() {
         <div className="absolute inset-0 opacity-20 bg-[url('data:image/svg+xml,%3Csvg viewBox=\'0 0 400 400\' xmlns=\'http://www.w3.org/2000/svg\'%3E%3Cfilter id=\'n\'%3E%3CfeTurbulence type=\'fractalNoise\' baseFrequency=\'0.9\' numOctaves=\'4\'/%3E%3C/filter%3E%3Crect width=\'100%25\' height=\'100%25\' filter=\'url(%23n)\'/%3E%3C/svg%3E')] bg-cover" />
       </div>
 
-      {/* Top left - Nav */}
+      {/* Header - Nav + Name - stacked on mobile to prevent overlap */}
       <motion.div
         initial={{ opacity: 0, y: -20 }}
         animate={{ opacity: 1, y: 0 }}
         transition={{ duration: 0.8 }}
-        className="fixed top-8 left-6 md:left-8 text-sm z-20"
+        className="fixed top-6 left-4 right-14 md:left-8 md:right-20 z-20 flex flex-col sm:flex-row sm:items-start sm:justify-between gap-3 sm:gap-0"
       >
-        <div className="flex flex-wrap gap-4 md:gap-6">
+        <div className="flex flex-wrap gap-3 md:gap-6 text-sm">
           <button onClick={() => scrollToSection('home')} className="text-[var(--text-primary)] hover:opacity-80 touch-action-manipulation">
             Home
           </button>
@@ -50,17 +50,10 @@ export function Hero() {
             Projects
           </button>
         </div>
-      </motion.div>
-
-      {/* Top right - Name */}
-      <motion.div
-        initial={{ opacity: 0, y: -20 }}
-        animate={{ opacity: 1, y: 0 }}
-        transition={{ duration: 0.8, delay: 0.2 }}
-        className="fixed top-8 right-[4.5rem] md:right-20 text-right text-sm z-20"
-      >
-        <div className="text-[var(--text-muted)]">Hello, my name is</div>
-        <div className="text-[var(--text-primary)] font-medium">Pravinraj</div>
+        <div className="text-sm sm:text-right shrink-0">
+          <div className="text-[var(--text-muted)]">Hello, my name is</div>
+          <div className="text-[var(--text-primary)] font-medium">Pravinraj</div>
+        </div>
       </motion.div>
 
       {/* Single column: text only */}
