@@ -1,5 +1,6 @@
 import { motion } from 'framer-motion';
 import { Link } from 'react-router-dom';
+import { useState } from 'react';
 import { ProjectPageTransition } from '../../components/project-details/ProjectPageTransition';
 import { ProjectHero } from '../../components/project-details/ProjectHero';
 import { assetPath } from '../../utils/assetPath';
@@ -12,6 +13,8 @@ const magazines = [
 ];
 
 export default function MagazineProject() {
+  const [activeImage, setActiveImage] = useState<number | null>(null);
+
   return (
     <ProjectPageTransition>
       <Link to="/">
@@ -55,6 +58,7 @@ export default function MagazineProject() {
               transition={{ duration: 0.5, delay: index * 0.1 }}
               viewport={{ once: true }}
               className="group cursor-pointer"
+              onClick={() => setActiveImage(magazine.id)}
             >
               <div className="relative rounded-xl overflow-hidden bg-[var(--border-color)] aspect-video mb-3">
                 <img
@@ -83,6 +87,40 @@ export default function MagazineProject() {
           ))}
         </div>
       </div>
+
+      {/* Preview Modal */}
+      {activeImage !== null && (
+        <motion.div
+          initial={{ opacity: 0 }}
+          animate={{ opacity: 1 }}
+          className="fixed inset-0 z-50 bg-black/90 flex items-center justify-center p-4 md:p-8"
+          onClick={() => setActiveImage(null)}
+        >
+          <motion.div
+            initial={{ scale: 0.9 }}
+            animate={{ scale: 1 }}
+            className="w-full max-w-3xl"
+            onClick={(e) => e.stopPropagation()}
+          >
+            <div className="flex justify-between items-center mb-4">
+              <h2 className="text-white font-bold text-xl">
+                {magazines.find((m) => m.id === activeImage)?.title}
+              </h2>
+              <button
+                onClick={() => setActiveImage(null)}
+                className="text-white/70 hover:text-white text-2xl transition-colors"
+              >
+                ✕
+              </button>
+            </div>
+            <img
+              src={magazines.find((m) => m.id === activeImage)?.image}
+              alt={magazines.find((m) => m.id === activeImage)?.title}
+              className="w-full rounded-xl object-contain max-h-[80vh]"
+            />
+          </motion.div>
+        </motion.div>
+      )}
     </ProjectPageTransition>
   );
 }
