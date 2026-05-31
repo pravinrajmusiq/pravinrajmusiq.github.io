@@ -2,67 +2,16 @@ import { motion } from 'framer-motion';
 import { Link } from 'react-router-dom';
 import { ProjectPageTransition } from '../../components/project-details/ProjectPageTransition';
 import { ProjectHero } from '../../components/project-details/ProjectHero';
-import { Section3_Results } from '../../components/project-details/Section3_Results';
 import { assetPath } from '../../utils/assetPath';
 
-export default function MagazineProject() {
-  const projectData = {
-    hero: {
-      title: 'Magazine',
-      category: 'Editorial Design • Layout • Publishing',
-      year: '2024',
-      heroImage: assetPath('/magazine.png'),
-      gradient: 'from-green-500 to-teal-500',
-    },
-    overview: {
-      challenge:
-        'Creating compelling editorial layouts that balance content with visual design. The challenge was to design engaging magazine spreads that keep readers engaged from cover to cover.',
-      solution:
-        'We developed a comprehensive editorial design system with custom typography, grid systems, and visual hierarchy. Each spread was designed to guide the reader through the content seamlessly.',
-      results:
-        'Delivered multiple magazine issues with cohesive design language. Readers reported increased engagement and time spent with the publication.',
-      image1: assetPath('/magazine.png'),
-      image2: assetPath('/box.jpg'),
-    },
-    features: [
-      {
-        title: 'Editorial Layout',
-        description: 'Thoughtful layout design that guides readers through content with clear hierarchy.',
-        image: assetPath('/magazine.png'),
-        icon: '📖',
-      },
-      {
-        title: 'Grid Systems',
-        description: 'Consistent grid systems that create rhythm and harmony across pages.',
-        image: assetPath('/mp.png'),
-        icon: '📐',
-      },
-      {
-        title: 'Visual Storytelling',
-        description: 'Storytelling through imagery and typography that captivates readers.',
-        image: assetPath('/ca1.png'),
-        icon: '📝',
-      },
-      {
-        title: 'Print Production',
-        description: 'Print-ready files with proper bleed, color profiles, and specifications.',
-        image: assetPath('/box.jpg'),
-        icon: '🖨️',
-      },
-    ],
-    results: {
-      logoText: 'MAGAZINE',
-      flipbookImages: [assetPath('/magazine.png'), assetPath('/box.jpg'), assetPath('/ca1.png'), assetPath('/mp.png')],
-      testimonial: {
-        quote:
-          'The magazine design transformed our publication. The layouts are clean, professional, and engaging. Our readers love the new look.',
-        author: 'Client',
-        role: 'Editor in Chief',
-        avatar: assetPath('/magazine.png'),
-      },
-    },
-  };
+const magazines = [
+  { id: 1, title: 'Film Set Vol.1', image: assetPath('/magazine.png') },
+  { id: 2, title: 'Editorial Layout', image: assetPath('/box.jpg') },
+  { id: 3, title: 'Creative Direction', image: assetPath('/ca1.png') },
+  { id: 4, title: 'Visual Storytelling', image: assetPath('/mp.png') },
+];
 
+export default function MagazineProject() {
   return (
     <ProjectPageTransition>
       <Link to="/">
@@ -77,8 +26,63 @@ export default function MagazineProject() {
         </motion.button>
       </Link>
 
-      <ProjectHero {...projectData.hero} />
-      <Section3_Results {...projectData.results} />
+      <ProjectHero
+        title="Magazine"
+        category="Editorial Design • Layout • Publishing"
+        year="2024"
+        heroImage={assetPath('/magazine.png')}
+        gradient="from-green-500 to-teal-500"
+      />
+
+      <div className="bg-[var(--page-bg)] text-[var(--text-primary)] py-24 px-6 md:px-12">
+        <motion.div
+          initial={{ opacity: 0, y: 30 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.6 }}
+          viewport={{ once: true }}
+          className="max-w-6xl mx-auto mb-10"
+        >
+          <h2 className="text-3xl md:text-4xl font-bold mb-2">My Magazines</h2>
+          <p className="text-[var(--text-muted)] text-lg">{magazines.length} designs</p>
+        </motion.div>
+
+        <div className="max-w-6xl mx-auto grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
+          {magazines.map((magazine, index) => (
+            <motion.div
+              key={magazine.id}
+              initial={{ opacity: 0, y: 30 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.5, delay: index * 0.1 }}
+              viewport={{ once: true }}
+              className="group cursor-pointer"
+            >
+              <div className="relative rounded-xl overflow-hidden bg-[var(--border-color)] aspect-[3/4] mb-3">
+                <img
+                  src={magazine.image}
+                  alt={magazine.title}
+                  className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
+                />
+                <div className="absolute inset-0 bg-black/40 opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex items-center justify-center">
+                  <div className="w-14 h-14 rounded-full bg-white/20 backdrop-blur-sm border border-white/40 flex items-center justify-center">
+                    <span className="text-white text-2xl">↗</span>
+                  </div>
+                </div>
+              </div>
+              <div className="flex items-start gap-3 px-1">
+                <div className="w-8 h-8 rounded bg-green-500/20 flex items-center justify-center shrink-0 mt-0.5">
+                  <span className="text-sm">📖</span>
+                </div>
+                <div>
+                  <h3 className="text-[var(--text-primary)] font-medium text-sm md:text-base leading-snug group-hover:opacity-80 transition-opacity">
+                    {magazine.title}
+                  </h3>
+                  <p className="text-[var(--text-muted)] text-xs mt-0.5">Pravinraj</p>
+                </div>
+              </div>
+            </motion.div>
+          ))}
+        </div>
+      </div>
     </ProjectPageTransition>
   );
 }
