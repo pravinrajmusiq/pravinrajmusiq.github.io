@@ -24,7 +24,7 @@ const videos = [
     title: 'Creative Reel',
     duration: '3:10',
     src: assetPath('/videos/video3.mp4'),
-    thumbnail: assetPath('/magazine.png'),
+    thumbnail: assetPath('/reel-thumb.png'),
   },
 ];
 
@@ -72,13 +72,21 @@ export default function VideosProject() {
             >
               {/* Thumbnail */}
               <div className="relative rounded-xl overflow-hidden bg-[var(--border-color)] aspect-video mb-3">
-                <video
-                  src={video.src}
-                  className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
-                  preload="metadata"
-                  muted
-                  playsInline
-                />
+                {video.id === 3 ? (
+                  <img
+                    src={video.thumbnail}
+                    alt={video.title}
+                    className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
+                  />
+                ) : (
+                  <video
+                    src={video.src}
+                    className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
+                    preload="metadata"
+                    muted
+                    playsInline
+                  />
+                )}
                 {/* Play Button Overlay */}
                 <div className="absolute inset-0 bg-black/40 opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex items-center justify-center">
                   <div className="w-14 h-14 rounded-full bg-white/20 backdrop-blur-sm border border-white/40 flex items-center justify-center">
