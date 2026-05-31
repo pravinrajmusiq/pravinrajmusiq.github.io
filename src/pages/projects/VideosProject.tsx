@@ -2,6 +2,7 @@ import { motion } from 'framer-motion';
 import { Link } from 'react-router-dom';
 import { useState } from 'react';
 import { ProjectPageTransition } from '../../components/project-details/ProjectPageTransition';
+import { ProjectHero } from '../../components/project-details/ProjectHero';
 import { assetPath } from '../../utils/assetPath';
 
 const videos = [
@@ -46,27 +47,36 @@ export default function VideosProject() {
         </motion.button>
       </Link>
 
-      <div className="min-h-screen bg-[var(--page-bg)] text-[var(--text-primary)] pt-28 pb-24 px-6 md:px-12">
+      {/* Hero Section */}
+      <ProjectHero
+        title="Videos"
+        category="Video Editing • Motion Graphics • Creative"
+        year="2024"
+        heroImage={assetPath('/ca1.png')}
+        gradient="from-purple-500 to-pink-500"
+      />
 
-        {/* Header */}
+      {/* Video Grid */}
+      <div className="bg-[var(--page-bg)] text-[var(--text-primary)] py-24 px-6 md:px-12">
         <motion.div
           initial={{ opacity: 0, y: 30 }}
-          animate={{ opacity: 1, y: 0 }}
+          whileInView={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.6 }}
+          viewport={{ once: true }}
           className="max-w-6xl mx-auto mb-10"
         >
-          <h1 className="text-4xl md:text-6xl font-bold mb-2">My Videos</h1>
+          <h2 className="text-3xl md:text-4xl font-bold mb-2">My Videos</h2>
           <p className="text-[var(--text-muted)] text-lg">{videos.length} videos</p>
         </motion.div>
 
-        {/* Video Grid */}
         <div className="max-w-6xl mx-auto grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
           {videos.map((video, index) => (
             <motion.div
               key={video.id}
               initial={{ opacity: 0, y: 30 }}
-              animate={{ opacity: 1, y: 0 }}
+              whileInView={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.5, delay: index * 0.1 }}
+              viewport={{ once: true }}
               className="group cursor-pointer"
               onClick={() => setActiveVideo(video.id)}
             >
