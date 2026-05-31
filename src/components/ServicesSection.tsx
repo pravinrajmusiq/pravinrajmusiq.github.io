@@ -4,27 +4,21 @@ import { assetPath } from '../utils/assetPath';
 const services = [
   {
     number: '01',
-    title: 'Graphic Designer',
-    description: 'I create compelling visual designs that communicate your brand message effectively. From logos and branding to print materials and digital graphics, I deliver designs that stand out and resonate with your audience.',
-    image: assetPath('/edit.png'),
+    title: 'Video Editing',
+    description: 'I create high-quality edited videos from raw footage to final delivery. Whether it\'s promotional videos, social media content, or creative storytelling, I handle editing and post-production to bring your vision to life.',
+    image: assetPath('/vid.png'),
   },
   {
     number: '02',
-    title: 'Video Production',
-    description: 'I produce high-quality video content from concept to final delivery. Whether it\'s promotional videos, corporate content, or creative storytelling, I handle filming, editing, and post-production to bring your vision to life.',
-    image: assetPath('/vid.png'),
+    title: 'Graphic Designer',
+    description: 'I create compelling visual designs that communicate your brand message effectively. From logos and branding to print materials and digital graphics, I deliver designs that stand out and resonate with your audience.',
+    image: assetPath('/edit.png'),
   },
   {
     number: '03',
     title: 'Motion Graphics',
     description: 'I create dynamic animated graphics and visual effects that captivate audiences. From animated logos and title sequences to explainer videos and social media content, I bring static designs to life with smooth, professional motion.',
     image: assetPath('/yh.png'),
-  },
-  {
-    number: '04',
-    title: 'UI/UX Design / Content Planning',
-    description: 'I design intuitive user interfaces and experiences that are both beautiful and functional. Combined with strategic content planning, I ensure your digital products are user-friendly, engaging, and aligned with your business goals.',
-    image: assetPath('/io.png'),
   },
 ];
 
