@@ -131,11 +131,7 @@ export function ProjectsSection() {
           className="mb-12 md:mb-20"
         >
           <h2 className="text-4xl md:text-6xl lg:text-7xl font-bold mb-6 md:mb-8 leading-tight">
-            See my Projects That
-            <br />
-            Impress Both Clients and
-            <br />
-            Customers.
+            See my Projects
           </h2>
           <p className="text-[var(--text-muted)] text-lg md:text-xl max-w-3xl">
             My projects showcase the exceptional work that I have delivered. Have a look into my
