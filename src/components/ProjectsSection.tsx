@@ -7,35 +7,35 @@ const projects = [
   {
     title: 'Videos',
     link: '/projects/videos',
-    category: 'Webflow Development',
+    category: 'Video Editing',
     description:
-      'The product design & branding studio. Founded by designers, The Bang is an award winning design studio.',
+      'A showcase of video editing and post-production work, delivering high-quality content for brands and creative projects.',
     image: assetPath('/ca1.png'),
     gradient: 'from-purple-500 to-pink-500',
   },
   {
     title: 'Poster',
     link: '/projects/poster',
-    category: 'Webflow Development, Web Design, Branding',
+    category: 'Graphic Design, Branding',
     description:
-      'Aid Studio, based in Romania, operates as an interior design and architecture studio.',
+      'Creative poster designs and visual branding work that communicate compelling messages for various clients.',
     image: assetPath('/mp.png'),
     gradient: 'from-blue-500 to-cyan-500',
   },
   {
     title: 'Magazine',
     link: '/projects/magazine',
-    category: 'Webflow Development',
+    category: 'Graphic Design',
     description:
-      'Avazia are a technology and engineering consultancy. Experts in data acquisition, control.',
+      'Magazine layout and editorial design projects combining strong typography and visual storytelling.',
     image: assetPath('/magazine.png'),
     gradient: 'from-green-500 to-teal-500',
   },
   {
     title: 'Box design',
     link: '/projects/box-design',
-    category: 'Webflow Development, Web Design, Branding',
-    description: 'Immersive storytelling experiences utilising augmented reality.',
+    category: 'Graphic Design, Branding',
+    description: 'Packaging and box design projects that blend creativity with functional visual identity.',
     image: assetPath('/box.jpg'),
     gradient: 'from-orange-500 to-red-500',
   },
@@ -139,7 +139,7 @@ export function ProjectsSection() {
           </h2>
           <p className="text-[var(--text-muted)] text-lg md:text-xl max-w-3xl">
             My projects showcase the exceptional work that I have delivered. Have a look into my
-            portfolio, highlighting the diverse range of web design and Webflow development projects
+            portfolio, highlighting the diverse range of video editing and graphic design projects
             for various industries.
           </p>
         </motion.div>
