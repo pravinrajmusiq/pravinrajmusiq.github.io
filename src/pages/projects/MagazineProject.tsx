@@ -56,7 +56,7 @@ export default function MagazineProject() {
               viewport={{ once: true }}
               className="group cursor-pointer"
             >
-              <div className="relative rounded-xl overflow-hidden bg-[var(--border-color)] aspect-[3/4] mb-3">
+              <div className="relative rounded-xl overflow-hidden bg-[var(--border-color)] aspect-video mb-3">
                 <img
                   src={magazine.image}
                   alt={magazine.title}
