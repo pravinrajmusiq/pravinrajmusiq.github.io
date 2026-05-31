@@ -32,9 +32,9 @@ export function AboutSection() {
             viewport={{ once: true }}
             transition={{ duration: 0.6 }}
           >
-            Graphic Design.
+            Video Editing.
             <br />
-            Visual Identity. Branding and
+            Graphic Design and
             <br />
             Creative Solutions.
           </motion.h2>
@@ -46,9 +46,9 @@ export function AboutSection() {
             viewport={{ once: true }}
             className="text-[var(--text-muted)] text-base md:text-lg leading-relaxed mb-6 md:mb-8"
           >
-            I'm a freelance graphic designer and visual creative. I specialise in creating compelling,
-            brand-defining visual identities for startups, businesses, and creative agencies as well as
-            award-winning designs that communicate effectively and resonate with audiences.
+            I'm a freelance video editor and graphic designer. I specialise in creating compelling
+            video content and visual designs for brands, businesses, and creative agencies — delivering
+            work that communicates effectively and resonates with audiences.
           </motion.p>
 
           <div className="flex flex-wrap gap-4 md:gap-6">
