@@ -31,14 +31,6 @@ const projects = [
     image: assetPath('/magazine.png'),
     gradient: 'from-green-500 to-teal-500',
   },
-  {
-    title: 'Box design',
-    link: '/projects/box-design',
-    category: 'Graphic Design, Branding',
-    description: 'Packaging and box design projects that blend creativity with functional visual identity.',
-    image: assetPath('/box.jpg'),
-    gradient: 'from-orange-500 to-red-500',
-  },
 ];
 
 function ProjectCard({
