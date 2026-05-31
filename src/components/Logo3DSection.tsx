@@ -106,7 +106,7 @@ export function Logo3DSection() {
     <section className="min-h-screen bg-[var(--page-bg)] flex items-center justify-center relative overflow-x-hidden overflow-y-visible">
       <div className="absolute inset-0 flex flex-col z-10 pointer-events-none min-h-screen">
         {/* Top: "Let's Work" with space below so it never overlaps 3D */}
-        <div className="flex-none flex flex-col items-center justify-end pt-20 md:pt-28 pb-16 md:pb-20 px-6">
+        <div className="flex-none flex flex-col items-center justify-end pt-20 md:pt-28 pb-16 md:pb-20 px-6 -translate-y-8 md:-translate-y-12">
           <motion.h2
             initial={{ opacity: 0, y: -20 }}
             whileInView={{ opacity: 1, y: 0 }}
