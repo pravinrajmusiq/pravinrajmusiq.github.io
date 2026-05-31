@@ -119,18 +119,6 @@ export function Logo3DSection() {
         </div>
         {/* Middle: empty so 3D animation has a clear band with no text overlap */}
         <div className="flex-1 min-h-[280px] md:min-h-[340px]" />
-        {/* Bottom: "Together!" with space above so it never overlaps 3D */}
-        <div className="flex-none flex flex-col items-center justify-start pt-12 md:pt-16 pb-24 md:pb-36 px-6">
-          <motion.h2
-            initial={{ opacity: 0, y: 20 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            transition={{ duration: 1 }}
-            viewport={{ once: true }}
-            className="text-4xl md:text-6xl lg:text-8xl font-bold text-[var(--text-primary)] text-center"
-          >
-            Together!
-          </motion.h2>
-        </div>
       </div>
 
       <div className="absolute inset-0 h-full w-full">
