@@ -1,8 +1,8 @@
 import { motion } from 'framer-motion';
 
 const siteLinks = ['Home', 'About me', 'Services', 'Projects', 'Contact', 'Free discovery call'];
-const serviceLinks = ['Webflow Development', 'Web Design', 'Figma to Webflow', 'WordPress to Webflow'];
-const otherLinks = ['LinkedIn', 'Twitter // X', 'Webflow', 'Awwwards', 'Instagram', 'Agency Website'];
+const serviceLinks = ['Video Editing', 'Graphic Design', 'Motion Graphics', 'Social Media Content'];
+const otherLinks = ['LinkedIn', 'Twitter // X', 'Instagram', 'Agency Website'];
 
 function scrollToSection(id: string) {
   const el = document.getElementById(id);
