@@ -2,7 +2,6 @@ import { motion } from 'framer-motion';
 
 const siteLinks = ['Home', 'About me', 'Services', 'Projects', 'Contact', 'Free discovery call'];
 const serviceLinks = ['Video Editing', 'Graphic Design', 'Motion Graphics', 'Social Media Content'];
-const otherLinks = ['LinkedIn', 'Twitter // X', 'Instagram', 'Agency Website'];
 
 function scrollToSection(id: string) {
   const el = document.getElementById(id);
@@ -14,7 +13,7 @@ export function Footer() {
   return (
     <footer className="bg-[var(--page-bg)] text-[var(--text-primary)] py-12 md:py-16 border-t border-[var(--border-color)]">
       <div className="max-w-7xl mx-auto px-6 md:px-8">
-        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-8 md:gap-12 mb-12">
+        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8 md:gap-12 mb-12">
           <div>
             <h4 className="text-[var(--text-muted)] text-sm mb-4">Site Links</h4>
             <ul className="space-y-2">
@@ -43,19 +42,6 @@ export function Footer() {
               {serviceLinks.map((link) => (
                 <motion.li key={link} whileHover={{ x: 5 }}>
                   <a href="#services" className="text-[var(--text-muted)] hover:text-[var(--text-primary)] transition-colors">
-                    {link}
-                  </a>
-                </motion.li>
-              ))}
-            </ul>
-          </div>
-
-          <div>
-            <h4 className="text-[var(--text-muted)] text-sm mb-4">Other Links</h4>
-            <ul className="space-y-2">
-              {otherLinks.map((link) => (
-                <motion.li key={link} whileHover={{ x: 5 }}>
-                  <a href="#" className="text-[var(--text-muted)] hover:text-[var(--text-primary)] transition-colors">
                     {link}
                   </a>
                 </motion.li>
