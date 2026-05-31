@@ -72,10 +72,12 @@ export default function VideosProject() {
             >
               {/* Thumbnail */}
               <div className="relative rounded-xl overflow-hidden bg-[var(--border-color)] aspect-video mb-3">
-                <img
-                  src={video.thumbnail}
-                  alt={video.title}
+                <video
+                  src={video.src}
                   className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
+                  preload="metadata"
+                  muted
+                  playsInline
                 />
                 {/* Play Button Overlay */}
                 <div className="absolute inset-0 bg-black/40 opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex items-center justify-center">
