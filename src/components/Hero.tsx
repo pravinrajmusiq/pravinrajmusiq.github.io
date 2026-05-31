@@ -1,7 +1,7 @@
 import { motion } from 'framer-motion';
 import { useEffect, useState } from 'react';
 
-const fullText = 'Graphic Designer &\nVisual\nCreative';
+const fullText = 'Video Editor &\nGraphic\nDesigner';
 
 function scrollToSection(id: string) {
   document.getElementById(id)?.scrollIntoView({ behavior: 'smooth', block: 'start' });
