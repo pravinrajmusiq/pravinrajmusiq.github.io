@@ -137,21 +137,6 @@ export function ProjectsSection() {
             <ProjectCard key={project.title} project={project} index={index} />
           ))}
         </div>
-
-        <motion.div
-          initial={{ opacity: 0, y: 20 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.6, delay: 0.8 }}
-          viewport={{ once: true }}
-          className="mt-12 md:mt-16 text-center"
-        >
-          <motion.button
-            whileHover={{ x: 10 }}
-            className="inline-flex items-center gap-2 text-xl text-[var(--text-primary)] touch-action-manipulation"
-          >
-            → View all
-          </motion.button>
-        </motion.div>
       </div>
     </section>
   );
