@@ -7,7 +7,7 @@ import { assetPath } from '../../utils/assetPath';
 interface ProjectHeroProps {
   title: string;
   category: string;
-  year: string;
+  year?: string;
   heroImage: string;
   gradient: string;
 }
@@ -71,14 +71,16 @@ export function ProjectHero({ title, category, year, heroImage, gradient }: Proj
 
       <div className="relative z-10 h-full flex items-center justify-center">
         <div className="text-center">
-          <motion.div
-            initial={{ opacity: 0, scale: 0 }}
-            animate={{ opacity: 1, scale: 1 }}
-            transition={{ duration: 0.6, delay: 0.2 }}
-            className="inline-block px-6 py-2 mb-6 rounded-full border border-white/30 backdrop-blur-sm"
-          >
-            <span className="text-white/80 text-sm">{year}</span>
-          </motion.div>
+          {year ? (
+            <motion.div
+              initial={{ opacity: 0, scale: 0 }}
+              animate={{ opacity: 1, scale: 1 }}
+              transition={{ duration: 0.6, delay: 0.2 }}
+              className="inline-block px-6 py-2 mb-6 rounded-full border border-white/30 backdrop-blur-sm"
+            >
+              <span className="text-white/80 text-sm">{year}</span>
+            </motion.div>
+          ) : null}
 
           <motion.h1
             initial={{ opacity: 0, y: 100 }}

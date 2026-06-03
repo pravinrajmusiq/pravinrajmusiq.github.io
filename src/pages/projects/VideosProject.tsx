@@ -88,7 +88,6 @@ export default function VideosProject() {
       <ProjectHero
         title="Videos"
         category="Video Editing • Motion Graphics • Creative"
-        year="2024"
         heroImage={assetPath('/ca1.png')}
         gradient="from-purple-500 to-pink-500"
       />

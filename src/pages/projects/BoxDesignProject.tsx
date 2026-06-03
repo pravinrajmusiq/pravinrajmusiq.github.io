@@ -10,7 +10,6 @@ export default function BoxDesignProject() {
     hero: {
       title: 'Box Design',
       category: 'Packaging • Product Design • Branding',
-      year: '2024',
       heroImage: assetPath('/box.jpg'),
       gradient: 'from-orange-500 to-red-500',
     },

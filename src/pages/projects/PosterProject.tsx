@@ -30,7 +30,6 @@ export default function PosterProject() {
       <ProjectHero
         title="Poster"
         category="Graphic Design • Branding • Print"
-        year="2024"
         heroImage={assetPath('/mp.png')}
         gradient="from-blue-500 to-cyan-500"
       />

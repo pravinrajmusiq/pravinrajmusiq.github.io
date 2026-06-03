@@ -37,7 +37,6 @@ export default function MagazineProject() {
       <ProjectHero
         title="Magazine"
         category="Editorial Design • Layout • Publishing"
-        year="2024"
         heroImage={assetPath('/magazine.png')}
         gradient="from-green-500 to-teal-500"
       />
