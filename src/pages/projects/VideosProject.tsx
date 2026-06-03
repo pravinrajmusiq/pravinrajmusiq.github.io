@@ -34,6 +34,27 @@ const videos = [
     src: assetPath('/videos/rasuah final video.mp4'),
     thumbnail: assetPath('/rasuah-thumb.png'),
   },
+  {
+    id: 5,
+    title: 'Car Video',
+    duration: '0:40',
+    src: assetPath('/videos/full video.mp4'),
+    thumbnail: assetPath('/videos/full video.mp4'),
+  },
+  {
+    id: 6,
+    title: 'Justice — Short Film',
+    duration: '7:55',
+    src: assetPath('/videos/videoplayback.mp4'),
+    thumbnail: assetPath('/videos/videoplayback.mp4'),
+  },
+  {
+    id: 7,
+    title: 'Interview BTS — Nanord Studio',
+    duration: '0:00',
+    src: assetPath('/videos/1. INTERVIEW BTS PRODUCER AIN 3.mp4'),
+    thumbnail: assetPath('/videos/1. INTERVIEW BTS PRODUCER AIN 3.mp4'),
+  },
 ];
 
 export default function VideosProject() {
