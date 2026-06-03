@@ -47,9 +47,8 @@ const videos: VideoItem[] = [
     id: 5,
     title: 'Car Video',
     duration: '0:40',
-    src: 'https://drive.google.com/file/d/1RSJ3DDvq5TUHHcJ_tFIrXenUbsV_1FFn/preview',
+    src: assetPath('/videos/full-video.mp4'),
     thumbnail: assetPath('/car-thumb.png'),
-    isEmbed: true,
   },
   {
     id: 6,
@@ -62,9 +61,8 @@ const videos: VideoItem[] = [
     id: 7,
     title: 'Interview BTS — Nanord Studio',
     duration: '6:33',
-    src: 'https://drive.google.com/file/d/1q8yqD0Go-nBfMbn_6YeQ621da2flOofd/preview',
+    src: assetPath('/videos/interview-bts.mp4'),
     thumbnail: assetPath('/bts-thumb.png'),
-    isEmbed: true,
   },
 ];
 
@@ -121,7 +119,7 @@ export default function VideosProject() {
             >
               {/* Thumbnail */}
               <div className="relative rounded-xl overflow-hidden bg-[var(--border-color)] aspect-video mb-3">
-                {video.id === 3 || video.id === 4 || video.id === 5 || video.id === 6 || video.id === 7 ? (
+                {video.id === 3 || video.id === 4 || video.id === 6 ? (
                   <img
                     src={video.thumbnail}
                     alt={video.title}
