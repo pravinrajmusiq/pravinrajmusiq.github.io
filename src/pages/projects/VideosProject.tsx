@@ -22,7 +22,7 @@ const videos = [
   },
   {
     id: 3,
-    title: 'Creative Reel',
+    title: 'Straw-Ber-Rita Ad',
     duration: '3:10',
     src: assetPath('/videos/video3.mp4'),
     thumbnail: assetPath('/reel-thumb.png'),
@@ -39,21 +39,21 @@ const videos = [
     title: 'Car Video',
     duration: '0:40',
     src: assetPath('/videos/full video.mp4'),
-    thumbnail: assetPath('/videos/full video.mp4'),
+    thumbnail: assetPath('/car-thumb.png'),
   },
   {
     id: 6,
     title: 'Justice — Short Film',
     duration: '7:55',
     src: assetPath('/videos/videoplayback.mp4'),
-    thumbnail: assetPath('/videos/videoplayback.mp4'),
+    thumbnail: assetPath('/justice-thumb.png'),
   },
   {
     id: 7,
     title: 'Interview BTS — Nanord Studio',
     duration: '0:00',
     src: assetPath('/videos/1. INTERVIEW BTS PRODUCER AIN 3.mp4'),
-    thumbnail: assetPath('/videos/1. INTERVIEW BTS PRODUCER AIN 3.mp4'),
+    thumbnail: assetPath('/bts-thumb.png'),
   },
 ];
 
@@ -110,7 +110,7 @@ export default function VideosProject() {
             >
               {/* Thumbnail */}
               <div className="relative rounded-xl overflow-hidden bg-[var(--border-color)] aspect-video mb-3">
-                {video.id === 3 || video.id === 4 ? (
+                {video.id === 3 || video.id === 4 || video.id === 5 || video.id === 6 || video.id === 7 ? (
                   <img
                     src={video.thumbnail}
                     alt={video.title}
