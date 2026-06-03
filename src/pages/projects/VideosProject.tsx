@@ -40,7 +40,7 @@ const videos: VideoItem[] = [
     id: 4,
     title: 'Rasuah — SPRM Short Film',
     duration: '5:00',
-    src: assetPath('/videos/rasuah final video.mp4'),
+    src: assetPath('/videos/rasuah-final-video.mp4'),
     thumbnail: assetPath('/rasuah-thumb.png'),
   },
   {

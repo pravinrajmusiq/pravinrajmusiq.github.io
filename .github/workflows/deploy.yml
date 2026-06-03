@@ -37,7 +37,7 @@ jobs:
               exit 1
             fi
           }
-          check_file "public/videos/rasuah final video.mp4"
+          check_file "public/videos/rasuah-final-video.mp4"
           check_file "public/videos/1. INTERVIEW BTS PRODUCER AIN 3.mp4"
 
       - name: Setup Node
@@ -59,7 +59,7 @@ jobs:
         run: |
           git lfs install
           cd dist
-          git lfs track "videos/rasuah final video.mp4"
+          git lfs track "videos/rasuah-final-video.mp4"
           git lfs track "videos/1. INTERVIEW BTS PRODUCER AIN 3.mp4"
           find . -type f -name '*.mp4' -size +95M -exec git lfs track {} \;
 
