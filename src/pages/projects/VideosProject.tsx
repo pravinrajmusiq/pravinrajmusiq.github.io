@@ -119,7 +119,7 @@ export default function VideosProject() {
             >
               {/* Thumbnail */}
               <div className="relative rounded-xl overflow-hidden bg-[var(--border-color)] aspect-video mb-3">
-                {video.id === 3 || video.id === 4 || video.id === 6 ? (
+                {video.id === 3 || video.id === 4 || video.id === 5 || video.id === 6 || video.id === 7 ? (
                   <img
                     src={video.thumbnail}
                     alt={video.title}
