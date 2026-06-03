@@ -7,9 +7,6 @@ import { assetPath } from '../../utils/assetPath';
 
 const magazines = [
   { id: 1, title: 'Film Set Vol.1', image: assetPath('/magazine.png') },
-  { id: 2, title: 'Editorial Layout', image: assetPath('/box.jpg') },
-  { id: 3, title: 'Creative Direction', image: assetPath('/ca1.png') },
-  { id: 4, title: 'Visual Storytelling', image: assetPath('/mp.png') },
 ];
 
 const menuBook = [
@@ -55,7 +52,7 @@ export default function MagazineProject() {
           className="max-w-6xl mx-auto mb-10"
         >
           <h2 className="text-3xl md:text-4xl font-bold mb-2">My Magazines</h2>
-          <p className="text-[var(--text-muted)] text-lg">{magazines.length} designs</p>
+          <p className="text-[var(--text-muted)] text-lg">{magazines.length} design</p>
         </motion.div>
 
         <div className="max-w-6xl mx-auto grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 mb-24">
