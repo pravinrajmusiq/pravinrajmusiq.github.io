@@ -5,7 +5,16 @@ import { ProjectPageTransition } from '../../components/project-details/ProjectP
 import { ProjectHero } from '../../components/project-details/ProjectHero';
 import { assetPath } from '../../utils/assetPath';
 
-const videos = [
+type VideoItem = {
+  id: number;
+  title: string;
+  duration: string;
+  src: string;
+  thumbnail: string;
+  isEmbed?: boolean;
+};
+
+const videos: VideoItem[] = [
   {
     id: 1,
     title: 'Entangled Hearts Trailer',
@@ -38,8 +47,9 @@ const videos = [
     id: 5,
     title: 'Car Video',
     duration: '0:40',
-    src: assetPath('/videos/full-video.mp4'),
+    src: 'https://drive.google.com/file/d/1RSJ3DDvq5TUHHcJ_tFIrXenUbsV_1FFn/preview',
     thumbnail: assetPath('/car-thumb.png'),
+    isEmbed: true,
   },
   {
     id: 6,
@@ -51,9 +61,10 @@ const videos = [
   {
     id: 7,
     title: 'Interview BTS — Nanord Studio',
-    duration: '0:00',
-    src: assetPath('/videos/interview-bts.mp4'),
+    duration: '6:33',
+    src: 'https://drive.google.com/file/d/1q8yqD0Go-nBfMbn_6YeQ621da2flOofd/preview',
     thumbnail: assetPath('/bts-thumb.png'),
+    isEmbed: true,
   },
 ];
 
@@ -155,39 +166,46 @@ export default function VideosProject() {
       </div>
 
       {/* Video Modal */}
-      {activeVideo !== null && (
-        <motion.div
-          initial={{ opacity: 0 }}
-          animate={{ opacity: 1 }}
-          className="fixed inset-0 z-50 bg-black/90 flex items-center justify-center p-4 md:p-8"
-          onClick={() => setActiveVideo(null)}
-        >
-          <motion.div
-            initial={{ scale: 0.9 }}
-            animate={{ scale: 1 }}
-            className="w-full max-w-4xl"
-            onClick={(e) => e.stopPropagation()}
-          >
-            <div className="flex justify-between items-center mb-4">
-              <h2 className="text-white font-bold text-xl">
-                {videos.find((v) => v.id === activeVideo)?.title}
-              </h2>
-              <button
-                onClick={() => setActiveVideo(null)}
-                className="text-white/70 hover:text-white text-2xl transition-colors"
+      {activeVideo !== null &&
+        (() => {
+          const video = videos.find((v) => v.id === activeVideo);
+          return video ? (
+            <motion.div
+              initial={{ opacity: 0 }}
+              animate={{ opacity: 1 }}
+              className="fixed inset-0 z-50 bg-black/90 flex items-center justify-center p-4 md:p-8"
+              onClick={() => setActiveVideo(null)}
+            >
+              <motion.div
+                initial={{ scale: 0.9 }}
+                animate={{ scale: 1 }}
+                className="w-full max-w-4xl"
+                onClick={(e) => e.stopPropagation()}
               >
-                ✕
-              </button>
-            </div>
-            <video
-              src={videos.find((v) => v.id === activeVideo)?.src}
-              controls
-              autoPlay
-              className="w-full rounded-xl"
-            />
-          </motion.div>
-        </motion.div>
-      )}
+                <div className="flex justify-between items-center mb-4">
+                  <h2 className="text-white font-bold text-xl">{video.title}</h2>
+                  <button
+                    onClick={() => setActiveVideo(null)}
+                    className="text-white/70 hover:text-white text-2xl transition-colors"
+                  >
+                    ✕
+                  </button>
+                </div>
+                {video.isEmbed ? (
+                  <iframe
+                    src={video.src}
+                    className="w-full rounded-xl"
+                    style={{ height: '400px' }}
+                    allow="autoplay"
+                    allowFullScreen
+                  />
+                ) : (
+                  <video src={video.src} controls autoPlay className="w-full rounded-xl" />
+                )}
+              </motion.div>
+            </motion.div>
+          ) : null;
+        })()}
     </ProjectPageTransition>
   );
 }
