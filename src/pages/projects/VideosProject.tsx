@@ -27,6 +27,13 @@ const videos = [
     src: assetPath('/videos/video3.mp4'),
     thumbnail: assetPath('/reel-thumb.png'),
   },
+  {
+    id: 4,
+    title: 'Rasuah — SPRM Short Film',
+    duration: '5:00',
+    src: assetPath('/videos/rasuah final video.mp4'),
+    thumbnail: assetPath('/rasuah-thumb.png'),
+  },
 ];
 
 export default function VideosProject() {
@@ -82,7 +89,7 @@ export default function VideosProject() {
             >
               {/* Thumbnail */}
               <div className="relative rounded-xl overflow-hidden bg-[var(--border-color)] aspect-video mb-3">
-                {video.id === 3 ? (
+                {video.id === 3 || video.id === 4 ? (
                   <img
                     src={video.thumbnail}
                     alt={video.title}
