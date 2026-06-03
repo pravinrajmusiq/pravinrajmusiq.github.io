@@ -8,14 +8,14 @@ import { assetPath } from '../../utils/assetPath';
 const videos = [
   {
     id: 1,
-    title: 'VEX Montage',
+    title: 'Entangled Hearts Trailer',
     duration: '2:34',
     src: assetPath('/videos/video1.mp4'),
     thumbnail: assetPath('/ca1.png'),
   },
   {
     id: 2,
-    title: 'VEX Trailer',
+    title: 'Famous Amos Ad',
     duration: '1:45',
     src: assetPath('/videos/video2.mp4'),
     thumbnail: assetPath('/mp.png'),
