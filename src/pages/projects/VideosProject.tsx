@@ -38,7 +38,7 @@ const videos = [
     id: 5,
     title: 'Car Video',
     duration: '0:40',
-    src: assetPath('/videos/full video.mp4'),
+    src: assetPath('/videos/full-video.mp4'),
     thumbnail: assetPath('/car-thumb.png'),
   },
   {
@@ -52,7 +52,7 @@ const videos = [
     id: 7,
     title: 'Interview BTS — Nanord Studio',
     duration: '0:00',
-    src: assetPath('/videos/1. INTERVIEW BTS PRODUCER AIN 3.mp4'),
+    src: assetPath('/videos/interview-bts.mp4'),
     thumbnail: assetPath('/bts-thumb.png'),
   },
 ];
