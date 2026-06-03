@@ -6,9 +6,10 @@ import { ProjectHero } from '../../components/project-details/ProjectHero';
 import { assetPath } from '../../utils/assetPath';
 
 const posters = [
-  { id: 1, title: 'Milo Campaign', image: assetPath('/mp.png') },
-  { id: 2, title: 'Magazine Cover', image: assetPath('/magazine.png') },
-  { id: 3, title: 'Product Shoot', image: assetPath('/ca1.png') },
+  { id: 1, title: 'Orang Perang', image: assetPath('/org prg poster 1 new.jpg') },
+  { id: 2, title: 'Milo Campaign', image: assetPath('/mp.png') },
+  { id: 3, title: 'Magazine Cover', image: assetPath('/magazine.png') },
+  { id: 4, title: 'Product Shoot', image: assetPath('/ca1.png') },
 ];
 
 export default function PosterProject() {
