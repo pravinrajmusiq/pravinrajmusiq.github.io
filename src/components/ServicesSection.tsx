@@ -4,15 +4,15 @@ import { assetPath } from '../utils/assetPath';
 const services = [
   {
     number: '01',
-    title: 'Video Editing',
-    description: 'I create high-quality edited videos from raw footage to final delivery. Whether it\'s promotional videos, social media content, or creative storytelling, I handle editing and post-production to bring your vision to life.',
-    image: assetPath('/vid.png'),
-  },
-  {
-    number: '02',
     title: 'Graphic Designer',
     description: 'I create compelling visual designs that communicate your brand message effectively. From logos and branding to print materials and digital graphics, I deliver designs that stand out and resonate with your audience.',
     image: assetPath('/edit.png'),
+  },
+  {
+    number: '02',
+    title: 'Video Editing',
+    description: 'I create high-quality edited videos from raw footage to final delivery. Whether it\'s promotional videos, social media content, or creative storytelling, I handle editing and post-production to bring your vision to life.',
+    image: assetPath('/vid.png'),
   },
   {
     number: '03',
