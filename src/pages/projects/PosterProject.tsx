@@ -28,9 +28,14 @@ const posters: PosterItem[] = [
 
 export default function PosterProject() {
   const [activeImage, setActiveImage] = useState<number | null>(null);
-  const [previewSrc, setPreviewSrc] = useState<string | null>(null);
 
   const activePoster = activeImage !== null ? posters.find((p) => p.id === activeImage) : null;
+  const galleryImages =
+    activePoster?.subImages && activePoster.subImages.length > 0
+      ? [activePoster.image, ...activePoster.subImages]
+      : activePoster
+        ? [activePoster.image]
+        : [];
 
   return (
     <ProjectPageTransition>
@@ -74,10 +79,7 @@ export default function PosterProject() {
               transition={{ duration: 0.5, delay: index * 0.1 }}
               viewport={{ once: true }}
               className="group cursor-pointer"
-              onClick={() => {
-                setPreviewSrc(null);
-                setActiveImage(poster.id);
-              }}
+              onClick={() => setActiveImage(poster.id)}
             >
               <div className="relative rounded-xl overflow-hidden bg-[var(--border-color)] aspect-video mb-3">
                 <img
@@ -112,59 +114,45 @@ export default function PosterProject() {
         <motion.div
           initial={{ opacity: 0 }}
           animate={{ opacity: 1 }}
-          className="fixed inset-0 z-50 bg-black/90 flex items-center justify-center p-4 md:p-8 overflow-y-auto"
-          onClick={() => {
-            setActiveImage(null);
-            setPreviewSrc(null);
-          }}
+          className="fixed inset-0 z-50 bg-black/90 flex items-center justify-center p-4 md:p-8"
+          onClick={() => setActiveImage(null)}
         >
           <motion.div
             initial={{ scale: 0.9 }}
             animate={{ scale: 1 }}
-            className="w-full max-w-4xl my-auto"
+            className="w-full max-w-5xl"
             onClick={(e) => e.stopPropagation()}
           >
             <div className="flex justify-between items-center mb-4">
               <h2 className="text-white font-bold text-xl">{activePoster.title}</h2>
               <button
-                onClick={() => {
-                  setActiveImage(null);
-                  setPreviewSrc(null);
-                }}
+                onClick={() => setActiveImage(null)}
                 className="text-white/70 hover:text-white text-2xl transition-colors"
               >
                 ✕
               </button>
             </div>
-            <img
-              src={previewSrc ?? activePoster.image}
-              alt={activePoster.title}
-              className="w-full rounded-xl object-contain max-h-[70vh]"
-            />
-            {activePoster.subImages && activePoster.subImages.length > 0 && (
-              <div className="mt-6">
-                <p className="text-white/70 text-sm mb-3">More posters</p>
-                <div className="grid grid-cols-1 sm:grid-cols-3 gap-4">
-                  {activePoster.subImages.map((src, index) => (
-                    <button
-                      key={src}
-                      type="button"
-                      onClick={() => setPreviewSrc(src)}
-                      className={`rounded-xl overflow-hidden border-2 transition-colors ${
-                        (previewSrc ?? activePoster.image) === src
-                          ? 'border-white'
-                          : 'border-transparent hover:border-white/40'
-                      }`}
-                    >
-                      <img
-                        src={src}
-                        alt={`${activePoster.title} variant ${index + 1}`}
-                        className="w-full aspect-[2/3] object-cover"
-                      />
-                    </button>
-                  ))}
-                </div>
+            {galleryImages.length > 1 ? (
+              <div className="grid grid-cols-2 gap-3 md:gap-4 h-[calc(100vh-10rem)] max-h-[720px]">
+                {galleryImages.map((src, index) => (
+                  <div
+                    key={src}
+                    className="flex items-center justify-center rounded-xl overflow-hidden bg-black/40 min-h-0"
+                  >
+                    <img
+                      src={src}
+                      alt={`${activePoster.title} ${index + 1}`}
+                      className="w-full h-full object-contain"
+                    />
+                  </div>
+                ))}
               </div>
+            ) : (
+              <img
+                src={activePoster.image}
+                alt={activePoster.title}
+                className="w-full rounded-xl object-contain max-h-[80vh]"
+              />
             )}
           </motion.div>
         </motion.div>
