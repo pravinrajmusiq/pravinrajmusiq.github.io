@@ -8,6 +8,7 @@ import { assetPath } from '../../utils/assetPath';
 type PosterCategory = {
   label: string;
   images: string[];
+  mobileGrid?: boolean;
 };
 
 type PosterItem = {
@@ -61,6 +62,7 @@ const posters: PosterItem[] = [
     categories: [
       {
         label: 'F&B Poster',
+        mobileGrid: true,
         images: [
           assetPath('/cadbury_poster_a3_2.jpg'),
           assetPath('/milo_ad_2.jpg'),
@@ -209,7 +211,11 @@ export default function PosterProject() {
                   <h3 className="text-white/80 font-semibold text-lg mb-3">{category.label}</h3>
                   <div className="relative">
                     <div
-                      className="flex flex-row flex-nowrap gap-3 md:gap-4 overflow-x-auto pb-2 snap-x snap-mandatory"
+                      className={
+                      category.mobileGrid
+                        ? "grid grid-cols-2 gap-3 sm:flex sm:flex-row sm:flex-nowrap sm:gap-4 sm:overflow-x-auto sm:pb-2 sm:snap-x sm:snap-mandatory"
+                        : "flex flex-row flex-nowrap gap-3 md:gap-4 overflow-x-auto pb-2 snap-x snap-mandatory"
+                    }
                       onScroll={(e) => handleRowScroll(category.label, e.currentTarget)}
                       ref={(el) => {
                         if (el && scrollStates[category.label] === undefined) {
@@ -220,7 +226,11 @@ export default function PosterProject() {
                       {category.images.map((src, index) => (
                       <div
                         key={src}
-                        className="flex-none h-40 sm:h-56 md:h-64 snap-start cursor-pointer rounded-xl overflow-hidden bg-black/40 flex items-center justify-center"
+                        className={
+                          category.mobileGrid
+                            ? "w-full h-32 sm:w-auto sm:h-56 md:h-64 sm:flex-none snap-start cursor-pointer rounded-xl overflow-hidden bg-black/40 flex items-center justify-center"
+                            : "flex-none h-40 sm:h-56 md:h-64 snap-start cursor-pointer rounded-xl overflow-hidden bg-black/40 flex items-center justify-center"
+                        }
                         onClick={() => openFullscreen(category.images, index)}
                       >
                         <img
