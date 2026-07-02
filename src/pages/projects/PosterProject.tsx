@@ -38,6 +38,23 @@ const posters: PosterItem[] = [
           assetPath('/op-teaser2.jpg'),
         ],
       },
+      {
+        label: 'Social Media Content',
+        images: [
+          assetPath('/bloopers_org_prg_1.png'),
+          assetPath('/kalau_zaman_atuk_thumbnail.png'),
+          assetPath('/whoever_gets_caught_thumbnail.png'),
+          assetPath('/saya_diculik_thumbnail.png'),
+          assetPath('/culik_thumbnail_vertical.png'),
+          assetPath('/culik_thumbnail.png'),
+          assetPath('/escape_camera_thumbnail.png'),
+          assetPath('/jatuh_thumbnail.png'),
+          assetPath('/tiang_thumbnail.png'),
+          assetPath('/airpod_thumbnail.png'),
+          assetPath('/model_content_thumbnail_vertical.png'),
+          assetPath('/alamak_thumbnail.png'),
+        ],
+      },
     ],
   },
   { id: 2, title: 'Magazine Cover', image: assetPath('/magazine.png') },
@@ -188,13 +205,13 @@ export default function PosterProject() {
                       {category.images.map((src, index) => (
                       <div
                         key={src}
-                        className="flex-none w-[42vw] sm:w-48 md:w-56 aspect-[2/3] snap-start cursor-pointer rounded-xl overflow-hidden bg-black/40"
+                        className="flex-none h-40 sm:h-56 md:h-64 snap-start cursor-pointer rounded-xl overflow-hidden bg-black/40 flex items-center justify-center"
                         onClick={() => openFullscreen(category.images, index)}
                       >
                         <img
                           src={src}
                           alt={`${activePoster.title} ${category.label} ${index + 1}`}
-                          className="w-full h-full object-cover hover:scale-105 transition-transform duration-300"
+                          className="h-full w-auto max-w-none object-contain hover:scale-105 transition-transform duration-300"
                         />
                       </div>
                       ))}
