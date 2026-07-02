@@ -54,6 +54,25 @@ const posters: PosterItem[] = [
     ],
   },
   { id: 2, title: 'Magazine Cover', image: assetPath('/magazine.png') },
+  {
+    id: 3,
+    title: 'F&B Poster',
+    image: assetPath('/cadbury_poster_a3_2.jpg'),
+    categories: [
+      {
+        label: 'F&B Poster',
+        images: [
+          assetPath('/cadbury_poster_a3_2.jpg'),
+          assetPath('/milo_ad_2.jpg'),
+          assetPath('/milo_poster_3.jpg'),
+          assetPath('/menako_poster.jpg'),
+          assetPath('/strawberrita_poster.jpg'),
+          assetPath('/hupseng_poster.jpg'),
+          assetPath('/potato_hips.jpg'),
+        ],
+      },
+    ],
+  },
 ];
 
 export default function PosterProject() {
