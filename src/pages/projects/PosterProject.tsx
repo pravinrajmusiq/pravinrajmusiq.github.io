@@ -132,11 +132,11 @@ export default function PosterProject() {
               </button>
             </div>
             {galleryImages.length > 1 ? (
-              <div className="grid grid-cols-2 gap-3 md:gap-4 h-[calc(100vh-10rem)] max-h-[720px]">
+              <div className="flex flex-row gap-3 md:gap-4 h-[calc(100vh-10rem)] max-h-[720px] overflow-x-auto">
                 {galleryImages.map((src, index) => (
                   <div
                     key={src}
-                    className="flex items-center justify-center rounded-xl overflow-hidden bg-black/40 min-h-0"
+                    className="flex items-center justify-center rounded-xl overflow-hidden bg-black/40 min-h-0 flex-1 min-w-[280px]"
                   >
                     <img
                       src={src}
