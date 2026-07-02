@@ -39,6 +39,14 @@ const magazines: MagazineItem[] = [
     image: assetPath('/magazine.png'),
     categories: [{ label: 'Film Set Vol.1', images: [assetPath('/magazine.png')] }],
   },
+  {
+    id: 4,
+    title: 'Video Planner',
+    image: assetPath('/video_planner_mockup.jpg'),
+    categories: [
+      { label: 'Video Planner', images: [assetPath('/video_planner_mockup.jpg')] },
+    ],
+  },
 ];
 
 export default function MagazineProject() {
