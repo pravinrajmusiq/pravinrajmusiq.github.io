@@ -75,6 +75,24 @@ const posters: PosterItem[] = [
       },
     ],
   },
+  {
+    id: 4,
+    title: 'Advertising & Campaign Posters',
+    image: assetPath('/poster_rasuah_sprm.jpg'),
+    categories: [
+      {
+        label: 'Advertising & Campaign Posters',
+        images: [
+          assetPath('/poster_news_anchor.jpg'),
+          assetPath('/poster_sony_theatre.jpg'),
+          assetPath('/poster_thai_tamil.jpg'),
+          assetPath('/poster_perak_tourism.jpg'),
+          assetPath('/poster_dream_big.jpg'),
+          assetPath('/poster_rasuah_sprm.jpg'),
+        ],
+      },
+    ],
+  },
 ];
 
 export default function PosterProject() {
