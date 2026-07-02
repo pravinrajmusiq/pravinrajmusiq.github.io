@@ -10,7 +10,7 @@ const projects = [
     category: 'Video Editing',
     description:
       'A showcase of video editing and post-production work, delivering high-quality content for brands and creative projects.',
-    image: assetPath('/ca1.png'),
+    image: assetPath('/bts-thumb.png'),
     gradient: 'from-purple-500 to-pink-500',
   },
   {
@@ -19,7 +19,7 @@ const projects = [
     category: 'Graphic Design, Branding',
     description:
       'Creative poster designs and visual branding work that communicate compelling messages for various clients.',
-    image: assetPath('/mp.png'),
+    image: assetPath('/org prg poster 1 new.jpg'),
     gradient: 'from-blue-500 to-cyan-500',
   },
   {
