@@ -25,23 +25,6 @@ const magazines: MagazineItem[] = [
     categories: [{ label: 'Hup Seng', images: [assetPath('/hupseng_poster.jpg')] }],
   },
   {
-    id: 2,
-    title: 'AMH Menu Book',
-    image: assetPath('/1.png'),
-    categories: [
-      {
-        label: 'AMH Menu Book',
-        images: [
-          assetPath('/1.png'),
-          assetPath('/2.png'),
-          assetPath('/3.png'),
-          assetPath('/4.png'),
-          assetPath('/5.png'),
-        ],
-      },
-    ],
-  },
-  {
     id: 3,
     title: 'Film Set Vol.1',
     image: assetPath('/magazine.png'),
