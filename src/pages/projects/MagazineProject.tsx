@@ -168,7 +168,13 @@ export default function MagazineProject() {
 
             {activeMagazine.categories.map((category) => (
               <div key={category.label} className="mb-8">
-                <div className="flex flex-row flex-nowrap gap-3 md:gap-4 overflow-x-auto pb-2 snap-x snap-mandatory">
+                <div
+                  className={
+                    category.images.length === 1
+                      ? "flex flex-row justify-center gap-3 md:gap-4"
+                      : "flex flex-row flex-nowrap gap-3 md:gap-4 overflow-x-auto pb-2 snap-x snap-mandatory"
+                  }
+                >
                   {category.images.map((src, index) => (
                     <div
                       key={src}
