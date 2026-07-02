@@ -67,7 +67,36 @@ const categories: VideoCategory[] = [
   },
   {
     label: 'Social Media Videos',
-    videos: [],
+    videos: [
+      {
+        id: 10,
+        title: 'Social Media Reel',
+        duration: '0:20',
+        src: assetPath('/videos/0519.mp4'),
+        thumbnail: '',
+      },
+      {
+        id: 11,
+        title: 'Tiang',
+        duration: '0:20',
+        src: assetPath('/videos/tiang-new.mp4'),
+        thumbnail: assetPath('/tiang_thumbnail.png'),
+      },
+      {
+        id: 12,
+        title: 'Culik',
+        duration: '0:20',
+        src: assetPath('/videos/culik-reedit.mp4'),
+        thumbnail: assetPath('/culik_thumbnail_vertical.png'),
+      },
+      {
+        id: 13,
+        title: 'Airpod',
+        duration: '0:20',
+        src: assetPath('/videos/airpod-edited.mp4'),
+        thumbnail: assetPath('/airpod_thumbnail.png'),
+      },
+    ],
   },
   {
     label: 'Entangled Hearts Trailer',
