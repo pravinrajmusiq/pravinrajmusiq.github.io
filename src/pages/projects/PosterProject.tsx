@@ -16,6 +16,7 @@ type PosterItem = {
   title: string;
   image: string;
   categories?: PosterCategory[];
+  comingSoon?: boolean;
 };
 
 const posters: PosterItem[] = [
@@ -54,7 +55,6 @@ const posters: PosterItem[] = [
       },
     ],
   },
-  { id: 2, title: 'Magazine Cover', image: assetPath('/magazine.png') },
   {
     id: 3,
     title: 'F&B Poster',
@@ -69,7 +69,6 @@ const posters: PosterItem[] = [
           assetPath('/milo_poster_3.jpg'),
           assetPath('/menako_poster.jpg'),
           assetPath('/strawberrita_poster.jpg'),
-          assetPath('/hupseng_poster.jpg'),
           assetPath('/potato_hips.jpg'),
         ],
       },
@@ -77,11 +76,11 @@ const posters: PosterItem[] = [
   },
   {
     id: 4,
-    title: 'Advertising & Campaign Posters',
+    title: 'Infographic and Campaign Posters',
     image: assetPath('/poster_rasuah_sprm.jpg'),
     categories: [
       {
-        label: 'Advertising & Campaign Posters',
+        label: 'Infographic and Campaign Posters',
         images: [
           assetPath('/poster_news_anchor.jpg'),
           assetPath('/poster_sony_theatre.jpg'),
@@ -92,6 +91,12 @@ const posters: PosterItem[] = [
         ],
       },
     ],
+  },
+  {
+    id: 5,
+    title: 'Event Posters',
+    image: '',
+    comingSoon: true,
   },
 ];
 
@@ -168,20 +173,30 @@ export default function PosterProject() {
               whileInView={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.5, delay: index * 0.1 }}
               viewport={{ once: true }}
-              className="group cursor-pointer"
-              onClick={() => setActiveImage(poster.id)}
+              className={poster.comingSoon ? 'group' : 'group cursor-pointer'}
+              onClick={() => {
+                if (!poster.comingSoon) setActiveImage(poster.id);
+              }}
             >
-              <div className="relative rounded-xl overflow-hidden bg-[var(--border-color)] aspect-video mb-3">
-                <img
-                  src={poster.image}
-                  alt={poster.title}
-                  className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
-                />
-                <div className="absolute inset-0 bg-black/40 opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex items-center justify-center">
-                  <div className="w-14 h-14 rounded-full bg-white/20 backdrop-blur-sm border border-white/40 flex items-center justify-center">
-                    <span className="text-white text-2xl">↗</span>
+              <div className="relative rounded-xl overflow-hidden bg-[var(--border-color)] aspect-video mb-3 flex items-center justify-center">
+                {poster.comingSoon ? (
+                  <div className="w-full h-full border-2 border-dashed border-[var(--border-color)] flex items-center justify-center">
+                    <span className="text-[var(--text-muted)] text-sm font-medium">Coming Soon</span>
                   </div>
-                </div>
+                ) : (
+                  <>
+                    <img
+                      src={poster.image}
+                      alt={poster.title}
+                      className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
+                    />
+                    <div className="absolute inset-0 bg-black/40 opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex items-center justify-center">
+                      <div className="w-14 h-14 rounded-full bg-white/20 backdrop-blur-sm border border-white/40 flex items-center justify-center">
+                        <span className="text-white text-2xl">↗</span>
+                      </div>
+                    </div>
+                  </>
+                )}
               </div>
               <div className="flex items-start gap-3 px-1">
                 <div className="w-8 h-8 rounded bg-blue-500/20 flex items-center justify-center shrink-0 mt-0.5">
@@ -191,7 +206,9 @@ export default function PosterProject() {
                   <h3 className="text-[var(--text-primary)] font-medium text-sm md:text-base leading-snug group-hover:opacity-80 transition-opacity">
                     {poster.title}
                   </h3>
-                  <p className="text-[var(--text-muted)] text-xs mt-0.5">Pravinraj</p>
+                  <p className="text-[var(--text-muted)] text-xs mt-0.5">
+                    {poster.comingSoon ? 'Coming soon' : 'Pravinraj'}
+                  </p>
                 </div>
               </div>
             </motion.div>
