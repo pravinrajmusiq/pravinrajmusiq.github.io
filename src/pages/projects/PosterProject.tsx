@@ -1,4 +1,4 @@
-import { motion } from 'framer-motion';
+import { motion, AnimatePresence } from 'framer-motion';
 import { Link } from 'react-router-dom';
 import { useState } from 'react';
 import { ProjectPageTransition } from '../../components/project-details/ProjectPageTransition';
@@ -45,8 +45,29 @@ const posters: PosterItem[] = [
 
 export default function PosterProject() {
   const [activeImage, setActiveImage] = useState<number | null>(null);
+  const [fullscreen, setFullscreen] = useState<{ images: string[]; index: number } | null>(null);
 
   const activePoster = activeImage !== null ? posters.find((p) => p.id === activeImage) : null;
+
+  const openFullscreen = (images: string[], index: number) => {
+    setFullscreen({ images, index });
+  };
+
+  const showNext = () => {
+    if (!fullscreen) return;
+    setFullscreen({
+      ...fullscreen,
+      index: (fullscreen.index + 1) % fullscreen.images.length,
+    });
+  };
+
+  const showPrev = () => {
+    if (!fullscreen) return;
+    setFullscreen({
+      ...fullscreen,
+      index: (fullscreen.index - 1 + fullscreen.images.length) % fullscreen.images.length,
+    });
+  };
 
   return (
     <ProjectPageTransition>
@@ -120,7 +141,7 @@ export default function PosterProject() {
         </div>
       </div>
 
-      {/* Preview Modal */}
+      {/* Category / Thumbnail Modal */}
       {activePoster !== null && activePoster !== undefined && (
         <motion.div
           initial={{ opacity: 0 }}
@@ -148,16 +169,17 @@ export default function PosterProject() {
               activePoster.categories.map((category) => (
                 <div key={category.label} className="mb-8">
                   <h3 className="text-white/80 font-semibold text-lg mb-3">{category.label}</h3>
-                  <div className="flex flex-row gap-3 md:gap-4 overflow-x-auto pb-2">
+                  <div className="flex flex-row flex-nowrap gap-3 md:gap-4 overflow-x-auto pb-2 snap-x snap-mandatory">
                     {category.images.map((src, index) => (
                       <div
                         key={src}
-                        className="flex items-center justify-center rounded-xl overflow-hidden bg-black/40 min-h-0 flex-1 min-w-[240px] max-h-[65vh]"
+                        className="flex-none w-[42vw] sm:w-48 md:w-56 aspect-[2/3] snap-start cursor-pointer rounded-xl overflow-hidden bg-black/40"
+                        onClick={() => openFullscreen(category.images, index)}
                       >
                         <img
                           src={src}
                           alt={`${activePoster.title} ${category.label} ${index + 1}`}
-                          className="w-full h-full object-contain"
+                          className="w-full h-full object-cover hover:scale-105 transition-transform duration-300"
                         />
                       </div>
                     ))}
@@ -168,12 +190,73 @@ export default function PosterProject() {
               <img
                 src={activePoster.image}
                 alt={activePoster.title}
-                className="w-full rounded-xl object-contain max-h-[80vh]"
+                className="w-full rounded-xl object-contain max-h-[80vh] cursor-pointer"
+                onClick={() => openFullscreen([activePoster.image], 0)}
               />
             )}
           </motion.div>
         </motion.div>
       )}
+
+      {/* Fullscreen Single Image Preview */}
+      <AnimatePresence>
+        {fullscreen && (
+          <motion.div
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            exit={{ opacity: 0 }}
+            className="fixed inset-0 z-[60] bg-black flex items-center justify-center"
+            onClick={() => setFullscreen(null)}
+          >
+            <button
+              onClick={() => setFullscreen(null)}
+              className="absolute top-6 right-6 text-white/80 hover:text-white text-3xl z-10"
+            >
+              ✕
+            </button>
+
+            {fullscreen.images.length > 1 && (
+              <>
+                <button
+                  onClick={(e) => {
+                    e.stopPropagation();
+                    showPrev();
+                  }}
+                  className="absolute left-3 md:left-8 top-1/2 -translate-y-1/2 text-white/80 hover:text-white text-4xl z-10 px-2"
+                >
+                  ‹
+                </button>
+                <button
+                  onClick={(e) => {
+                    e.stopPropagation();
+                    showNext();
+                  }}
+                  className="absolute right-3 md:right-8 top-1/2 -translate-y-1/2 text-white/80 hover:text-white text-4xl z-10 px-2"
+                >
+                  ›
+                </button>
+              </>
+            )}
+
+            <motion.img
+              key={fullscreen.images[fullscreen.index]}
+              initial={{ opacity: 0, scale: 0.95 }}
+              animate={{ opacity: 1, scale: 1 }}
+              transition={{ duration: 0.2 }}
+              src={fullscreen.images[fullscreen.index]}
+              alt="Poster preview"
+              className="max-w-[92vw] max-h-[90vh] object-contain"
+              onClick={(e) => e.stopPropagation()}
+            />
+
+            {fullscreen.images.length > 1 && (
+              <div className="absolute bottom-6 left-1/2 -translate-x-1/2 text-white/70 text-sm">
+                {fullscreen.index + 1} / {fullscreen.images.length}
+              </div>
+            )}
+          </motion.div>
+        )}
+      </AnimatePresence>
     </ProjectPageTransition>
   );
 }
