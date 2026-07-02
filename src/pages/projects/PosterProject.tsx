@@ -46,6 +46,7 @@ const posters: PosterItem[] = [
 export default function PosterProject() {
   const [activeImage, setActiveImage] = useState<number | null>(null);
   const [fullscreen, setFullscreen] = useState<{ images: string[]; index: number } | null>(null);
+  const [scrollStates, setScrollStates] = useState<Record<string, boolean>>({});
 
   const activePoster = activeImage !== null ? posters.find((p) => p.id === activeImage) : null;
 
@@ -67,6 +68,11 @@ export default function PosterProject() {
       ...fullscreen,
       index: (fullscreen.index - 1 + fullscreen.images.length) % fullscreen.images.length,
     });
+  };
+
+  const handleRowScroll = (key: string, el: HTMLDivElement) => {
+    const isAtEnd = el.scrollLeft + el.clientWidth >= el.scrollWidth - 10;
+    setScrollStates((prev) => (prev[key] === !isAtEnd ? prev : { ...prev, [key]: !isAtEnd }));
   };
 
   return (
@@ -169,8 +175,17 @@ export default function PosterProject() {
               activePoster.categories.map((category) => (
                 <div key={category.label} className="mb-8">
                   <h3 className="text-white/80 font-semibold text-lg mb-3">{category.label}</h3>
-                  <div className="flex flex-row flex-nowrap gap-3 md:gap-4 overflow-x-auto pb-2 snap-x snap-mandatory">
-                    {category.images.map((src, index) => (
+                  <div className="relative">
+                    <div
+                      className="flex flex-row flex-nowrap gap-3 md:gap-4 overflow-x-auto pb-2 snap-x snap-mandatory"
+                      onScroll={(e) => handleRowScroll(category.label, e.currentTarget)}
+                      ref={(el) => {
+                        if (el && scrollStates[category.label] === undefined) {
+                          handleRowScroll(category.label, el);
+                        }
+                      }}
+                    >
+                      {category.images.map((src, index) => (
                       <div
                         key={src}
                         className="flex-none w-[42vw] sm:w-48 md:w-56 aspect-[2/3] snap-start cursor-pointer rounded-xl overflow-hidden bg-black/40"
@@ -182,7 +197,26 @@ export default function PosterProject() {
                           className="w-full h-full object-cover hover:scale-105 transition-transform duration-300"
                         />
                       </div>
-                    ))}
+                      ))}
+                    </div>
+                    {category.images.length > 1 && scrollStates[category.label] !== false && (
+                      <div className="pointer-events-none absolute right-0 top-0 bottom-2 w-16 bg-gradient-to-l from-[var(--page-bg)] to-transparent flex items-center justify-end pr-1">
+                        <div className="w-8 h-8 rounded-full bg-[var(--text-primary)]/10 backdrop-blur-sm border border-[var(--border-color)] flex items-center justify-center animate-pulse">
+                          <svg
+                            width="16"
+                            height="16"
+                            viewBox="0 0 24 24"
+                            fill="none"
+                            stroke="var(--text-primary)"
+                            strokeWidth="2.5"
+                            strokeLinecap="round"
+                            strokeLinejoin="round"
+                          >
+                            <polyline points="9 18 15 12 9 6" />
+                          </svg>
+                        </div>
+                      </div>
+                    )}
                   </div>
                 </div>
               ))
