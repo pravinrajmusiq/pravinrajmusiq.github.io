@@ -22,7 +22,16 @@ const magazines: MagazineItem[] = [
     id: 1,
     title: 'Hup Seng',
     image: assetPath('/hupseng_poster.jpg'),
-    categories: [{ label: 'Hup Seng', images: [assetPath('/hupseng_poster.jpg')] }],
+    categories: [
+      {
+        label: 'Hup Seng',
+        images: [
+          assetPath('/hupseng_poster.jpg'),
+          assetPath('/hupseng_guideline_1.jpg'),
+          assetPath('/hupseng_guideline_2.jpg'),
+        ],
+      },
+    ],
   },
   {
     id: 3,
