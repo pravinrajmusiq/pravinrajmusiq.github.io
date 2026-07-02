@@ -23,6 +23,15 @@ const projects = [
     gradient: 'from-blue-500 to-cyan-500',
   },
   {
+    title: 'Branding',
+    link: '/projects/branding',
+    category: 'Brand Identity, Rebranding',
+    description:
+      'A full rebranding case study including menu design, promotional posters, and brand research.',
+    image: assetPath('/branding_infographic.jpg'),
+    gradient: 'from-amber-500 to-orange-500',
+  },
+  {
     title: 'Magazine',
     link: '/projects/magazine',
     category: 'Graphic Design',
