@@ -8,6 +8,7 @@ import VideosProject from './pages/projects/VideosProject';
 import PosterProject from './pages/projects/PosterProject';
 import MagazineProject from './pages/projects/MagazineProject';
 import BoxDesignProject from './pages/projects/BoxDesignProject';
+import BoxDesignsProject from './pages/projects/BoxDesignsProject';
 import BrandingProject from './pages/projects/BrandingProject';
 
 function App() {
@@ -51,6 +52,7 @@ function App() {
           <Route path="/projects/poster" element={<PosterProject />} />
           <Route path="/projects/magazine" element={<MagazineProject />} />
           <Route path="/projects/box-design" element={<BoxDesignProject />} />
+          <Route path="/projects/box-designs" element={<BoxDesignsProject />} />
           <Route path="/projects/branding" element={<BrandingProject />} />
         </Routes>
         <div className="grain" aria-hidden="true" />

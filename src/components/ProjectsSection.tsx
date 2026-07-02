@@ -40,6 +40,15 @@ const projects = [
     image: assetPath('/magazine.png'),
     gradient: 'from-green-500 to-teal-500',
   },
+  {
+    title: 'Box Design',
+    link: '/projects/box-designs',
+    category: 'Packaging, Product Design',
+    description:
+      'Packaging and box designs for products and brands, from concept mockups to production-ready dielines.',
+    image: assetPath('/box_888_tea_render.jpg'),
+    gradient: 'from-orange-500 to-red-500',
+  },
 ];
 
 function ProjectCard({
