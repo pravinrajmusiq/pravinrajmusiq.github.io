@@ -5,11 +5,16 @@ import { ProjectPageTransition } from '../../components/project-details/ProjectP
 import { ProjectHero } from '../../components/project-details/ProjectHero';
 import { assetPath } from '../../utils/assetPath';
 
+type PosterCategory = {
+  label: string;
+  images: string[];
+};
+
 type PosterItem = {
   id: number;
   title: string;
   image: string;
-  subImages?: string[];
+  categories?: PosterCategory[];
 };
 
 const posters: PosterItem[] = [
@@ -17,9 +22,22 @@ const posters: PosterItem[] = [
     id: 1,
     title: 'Orang Perang',
     image: assetPath('/org prg poster 1 new.jpg'),
-    subImages: [
-      assetPath('/op2.jpg'),
-      assetPath('/op3.jpg'),
+    categories: [
+      {
+        label: 'Official Poster',
+        images: [
+          assetPath('/org prg poster 1 new.jpg'),
+          assetPath('/op2.jpg'),
+          assetPath('/op3.jpg'),
+        ],
+      },
+      {
+        label: 'Teaser Poster',
+        images: [
+          assetPath('/op-teaser1.jpg'),
+          assetPath('/op-teaser2.jpg'),
+        ],
+      },
     ],
   },
   { id: 2, title: 'Magazine Cover', image: assetPath('/magazine.png') },
@@ -29,12 +47,6 @@ export default function PosterProject() {
   const [activeImage, setActiveImage] = useState<number | null>(null);
 
   const activePoster = activeImage !== null ? posters.find((p) => p.id === activeImage) : null;
-  const galleryImages =
-    activePoster?.subImages && activePoster.subImages.length > 0
-      ? [activePoster.image, ...activePoster.subImages]
-      : activePoster
-        ? [activePoster.image]
-        : [];
 
   return (
     <ProjectPageTransition>
@@ -113,16 +125,16 @@ export default function PosterProject() {
         <motion.div
           initial={{ opacity: 0 }}
           animate={{ opacity: 1 }}
-          className="fixed inset-0 z-50 bg-black/90 flex items-center justify-center p-4 md:p-8"
+          className="fixed inset-0 z-50 bg-black/90 flex items-start md:items-center justify-center p-4 md:p-8 overflow-y-auto"
           onClick={() => setActiveImage(null)}
         >
           <motion.div
             initial={{ scale: 0.9 }}
             animate={{ scale: 1 }}
-            className="w-full max-w-5xl"
+            className="w-full max-w-5xl my-auto"
             onClick={(e) => e.stopPropagation()}
           >
-            <div className="flex justify-between items-center mb-4">
+            <div className="flex justify-between items-center mb-6">
               <h2 className="text-white font-bold text-xl">{activePoster.title}</h2>
               <button
                 onClick={() => setActiveImage(null)}
@@ -131,21 +143,27 @@ export default function PosterProject() {
                 ✕
               </button>
             </div>
-            {galleryImages.length > 1 ? (
-              <div className="flex flex-row gap-3 md:gap-4 h-[calc(100vh-10rem)] max-h-[720px] overflow-x-auto">
-                {galleryImages.map((src, index) => (
-                  <div
-                    key={src}
-                    className="flex items-center justify-center rounded-xl overflow-hidden bg-black/40 min-h-0 flex-1 min-w-[280px]"
-                  >
-                    <img
-                      src={src}
-                      alt={`${activePoster.title} ${index + 1}`}
-                      className="w-full h-full object-contain"
-                    />
+
+            {activePoster.categories ? (
+              activePoster.categories.map((category) => (
+                <div key={category.label} className="mb-8">
+                  <h3 className="text-white/80 font-semibold text-lg mb-3">{category.label}</h3>
+                  <div className="flex flex-row gap-3 md:gap-4 overflow-x-auto pb-2">
+                    {category.images.map((src, index) => (
+                      <div
+                        key={src}
+                        className="flex items-center justify-center rounded-xl overflow-hidden bg-black/40 min-h-0 flex-1 min-w-[240px] max-h-[65vh]"
+                      >
+                        <img
+                          src={src}
+                          alt={`${activePoster.title} ${category.label} ${index + 1}`}
+                          className="w-full h-full object-contain"
+                        />
+                      </div>
+                    ))}
                   </div>
-                ))}
-              </div>
+                </div>
+              ))
             ) : (
               <img
                 src={activePoster.image}
