@@ -35,7 +35,7 @@ const categories: VideoCategory[] = [
         title: 'Famous Amos Ad',
         duration: '1:45',
         src: assetPath('/videos/video2.mp4'),
-        thumbnail: assetPath('/mp.png'),
+        thumbnail: assetPath('/famous_amos_thumb.jpg'),
       },
       {
         id: 8,
@@ -49,7 +49,7 @@ const categories: VideoCategory[] = [
         title: 'Milo Ad',
         duration: '0:30',
         src: assetPath('/videos/milo-ad.mp4'),
-        thumbnail: '',
+        thumbnail: assetPath('/milo_ad_thumb.jpg'),
       },
     ],
   },
