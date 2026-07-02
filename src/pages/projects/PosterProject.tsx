@@ -18,7 +18,6 @@ const posters: PosterItem[] = [
     title: 'Orang Perang',
     image: assetPath('/org prg poster 1 new.jpg'),
     subImages: [
-      assetPath('/op1.jpg'),
       assetPath('/op2.jpg'),
       assetPath('/op3.jpg'),
     ],
