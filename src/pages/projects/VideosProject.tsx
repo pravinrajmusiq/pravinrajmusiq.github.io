@@ -141,10 +141,6 @@ const categories: VideoCategory[] = [
       },
     ],
   },
-  {
-    label: 'Fyp Motion Posters and AMH Intro',
-    videos: [],
-  },
 ];
 
 const allVideos = categories.flatMap((c) => c.videos);

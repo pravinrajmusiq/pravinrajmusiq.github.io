@@ -92,12 +92,6 @@ const posters: PosterItem[] = [
       },
     ],
   },
-  {
-    id: 5,
-    title: 'Event Posters',
-    image: '',
-    comingSoon: true,
-  },
 ];
 
 export default function PosterProject() {
