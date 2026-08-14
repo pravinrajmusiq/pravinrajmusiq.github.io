@@ -46,9 +46,7 @@ export function AboutSection() {
             viewport={{ once: true }}
             className="text-[var(--text-muted)] text-base md:text-lg leading-relaxed mb-6 md:mb-8"
           >
-            I'm a freelance video editor and graphic designer. I specialise in creating compelling
-            video content and visual designs for brands, businesses, and creative agencies — delivering
-            work that communicates effectively and resonates with audiences.
+            Graphic Designer and Video Editor with a Bachelor's in Graphic Design and hands-on experience across branding, motion graphics, and video production — from a feature film production to full brand identity systems. I bring ideas from concept to final delivery, whether that's as part of a team or on freelance projects.
           </motion.p>
 
           <div className="flex flex-wrap gap-4 md:gap-6">
@@ -59,13 +57,14 @@ export function AboutSection() {
             >
               → Services
             </motion.button>
-            <motion.button
-              onClick={() => document.getElementById('contact')?.scrollIntoView({ behavior: 'smooth' })}
+            <motion.a
+              href={assetPath('/resume/Pravinraj-Resume.pdf')}
+              download
               whileHover={{ x: 10 }}
               className="text-[var(--text-primary)] flex items-center gap-2 touch-action-manipulation"
             >
-              → Book a free discovery call
-            </motion.button>
+              → Download Resume
+            </motion.a>
           </div>
         </motion.div>
 

@@ -25,6 +25,9 @@ export function ContactSection() {
   return (
     <section id="contact" className="bg-[var(--page-bg)] text-[var(--text-primary)] py-24 md:py-32">
       <div className="max-w-7xl mx-auto px-6 md:px-8">
+        <p className="text-[var(--text-muted)] text-base md:text-lg text-center mb-10 md:mb-12 max-w-2xl mx-auto">
+          Also open to full-time roles — feel free to reach out or download my resume.
+        </p>
         <div className="grid grid-cols-1 sm:grid-cols-3 gap-6 md:gap-8">
           {contacts.map((item, index) => (
             <motion.a

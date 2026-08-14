@@ -1,5 +1,6 @@
 import { motion } from 'framer-motion';
 import { useEffect, useState } from 'react';
+import { assetPath } from '../utils/assetPath';
 
 const fullText = 'Graphic Designer &\nVideo Editor';
 
@@ -82,17 +83,40 @@ export function Hero() {
             Pravinraj
           </motion.div>
 
-          <motion.button
+          <motion.p
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.8, delay: 0.8 }}
-            whileHover={{ scale: 1.05 }}
-            whileTap={{ scale: 0.98 }}
-            onClick={() => scrollToSection('projects')}
-            className="mt-10 md:mt-12 px-6 md:px-8 py-3 md:py-4 bg-[var(--button-bg)] text-[var(--button-text)] rounded-full font-medium hover:opacity-90 transition-opacity touch-action-manipulation min-h-[44px]"
+            transition={{ duration: 0.8, delay: 0.7 }}
+            className="mt-4 md:mt-6 max-w-2xl text-base md:text-lg text-[var(--text-muted)] leading-relaxed"
           >
-            View my work
-          </motion.button>
+            Graphic Designer and Video Editor with hands-on experience in branding, motion graphics, and campaign production. Currently seeking full-time opportunities in graphic design, branding, or motion design roles. Open to freelance projects as well.
+          </motion.p>
+
+          <div className="mt-10 md:mt-12 flex flex-wrap gap-4">
+            <motion.button
+              initial={{ opacity: 0, y: 20 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.8, delay: 0.8 }}
+              whileHover={{ scale: 1.05 }}
+              whileTap={{ scale: 0.98 }}
+              onClick={() => scrollToSection('projects')}
+              className="px-6 md:px-8 py-3 md:py-4 bg-[var(--button-bg)] text-[var(--button-text)] rounded-full font-medium hover:opacity-90 transition-opacity touch-action-manipulation min-h-[44px]"
+            >
+              View My Work
+            </motion.button>
+            <motion.a
+              href={assetPath('/resume/Pravinraj-Resume.pdf')}
+              download
+              initial={{ opacity: 0, y: 20 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.8, delay: 0.9 }}
+              whileHover={{ scale: 1.05 }}
+              whileTap={{ scale: 0.98 }}
+              className="px-6 md:px-8 py-3 md:py-4 bg-[var(--button-bg)] text-[var(--button-text)] rounded-full font-medium hover:opacity-90 transition-opacity touch-action-manipulation min-h-[44px] inline-flex items-center"
+            >
+              Download Resume
+            </motion.a>
+          </div>
         </div>
       </div>
 

@@ -116,6 +116,15 @@ export function Logo3DSection() {
           >
             Let's Work
           </motion.h2>
+          <motion.p
+            initial={{ opacity: 0, y: -10 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.8, delay: 0.15 }}
+            viewport={{ once: true }}
+            className="mt-3 md:mt-4 text-sm md:text-base text-[var(--text-muted)] text-center"
+          >
+            Open to full-time roles and freelance projects
+          </motion.p>
         </div>
         {/* Middle: empty so 3D animation has a clear band with no text overlap */}
         <div className="flex-1 min-h-[280px] md:min-h-[340px]" />

@@ -1,4 +1,5 @@
 import { motion } from 'framer-motion';
+import { assetPath } from '../utils/assetPath';
 
 const siteLinks = [
   { label: 'Home', id: 'home' },
@@ -66,7 +67,16 @@ export function Footer() {
           </div>
 
           <div className="text-left sm:text-right">
-            <div className="text-[var(--text-muted)] text-sm mb-4">Book a Call</div>
+            <div className="text-[var(--text-muted)] text-sm mb-4 flex sm:justify-end gap-4 items-center">
+              <span>Book a Call</span>
+              <a
+                href={assetPath('/resume/Pravinraj-Resume.pdf')}
+                download
+                className="text-[var(--text-primary)] font-medium hover:opacity-80 transition-opacity"
+              >
+                Resume
+              </a>
+            </div>
             <motion.a
               href="https://calendly.com/prakasvinraj"
               target="_blank"
