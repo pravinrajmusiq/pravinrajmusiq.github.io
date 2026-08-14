@@ -12,6 +12,8 @@ type VideoItem = {
   src: string;
   thumbnail: string;
   isEmbed?: boolean;
+  embedPadding?: string;
+  embedTitle?: string;
 };
 
 type VideoCategory = {
@@ -27,29 +29,41 @@ const categories: VideoCategory[] = [
         id: 3,
         title: 'Straw-Ber-Rita Ad',
         duration: '3:10',
-        src: assetPath('/videos/video3.mp4'),
+        src: 'https://player.vimeo.com/video/1218220750?badge=0&autopause=0&player_id=0&app_id=58479',
         thumbnail: assetPath('/reel-thumb.png'),
+        isEmbed: true,
+        embedPadding: '56.25%',
+        embedTitle: '3D CAN DRINK AD',
       },
       {
         id: 2,
         title: 'Famous Amos Ad',
         duration: '1:45',
-        src: assetPath('/videos/video2.mp4'),
+        src: 'https://player.vimeo.com/video/1218222974?badge=0&autopause=0&player_id=0&app_id=58479',
         thumbnail: assetPath('/famous_amos_thumb.jpg'),
+        isEmbed: true,
+        embedPadding: '56.25%',
+        embedTitle: 'FAMOUS AMOS VIDEO AD',
       },
       {
         id: 8,
         title: 'Gardenia Ad',
         duration: '0:30',
-        src: assetPath('/videos/gardenia-ad.mp4'),
+        src: 'https://player.vimeo.com/video/1218221679?badge=0&autopause=0&player_id=0&app_id=58479',
         thumbnail: '',
+        isEmbed: true,
+        embedPadding: '56.25%',
+        embedTitle: 'GARDENIA VIDEO AD',
       },
       {
         id: 9,
         title: 'Milo Ad',
         duration: '0:30',
-        src: assetPath('/videos/milo-ad.mp4'),
+        src: 'https://player.vimeo.com/video/1218224141?badge=0&autopause=0&player_id=0&app_id=58479',
         thumbnail: assetPath('/milo_ad_thumb.jpg'),
+        isEmbed: true,
+        embedPadding: '177.78%',
+        embedTitle: 'MILO VIDEO AD',
       },
     ],
   },
@@ -60,8 +74,21 @@ const categories: VideoCategory[] = [
         id: 7,
         title: 'Interview BTS — Nanord Studio',
         duration: '6:33',
-        src: assetPath('/videos/interview-bts.mp4'),
+        src: 'https://player.vimeo.com/video/1218216117?badge=0&autopause=0&player_id=0&app_id=58479',
         thumbnail: assetPath('/bts-thumb.png'),
+        isEmbed: true,
+        embedPadding: '56.25%',
+        embedTitle: 'INTERVIEW BTS PRODUCER OF ORANG PERANG',
+      },
+      {
+        id: 15,
+        title: 'BTS Premium — Orang Perang',
+        duration: '0:30',
+        src: 'https://player.vimeo.com/video/1218213327?badge=0&autopause=0&player_id=0&app_id=58479',
+        thumbnail: '',
+        isEmbed: true,
+        embedPadding: '56.25%',
+        embedTitle: 'BTS PREMIUM ORANG PERANG',
       },
     ],
   },
@@ -124,8 +151,11 @@ const categories: VideoCategory[] = [
         id: 4,
         title: 'Rasuah — SPRM Short Film',
         duration: '5:00',
-        src: assetPath('/videos/rasuah-final-video.mp4'),
+        src: 'https://player.vimeo.com/video/1218225022?badge=0&autopause=0&player_id=0&app_id=58479',
         thumbnail: assetPath('/rasuah-thumb.png'),
+        isEmbed: true,
+        embedPadding: '56.25%',
+        embedTitle: 'SPRM CAMPAIGN VIDEO AD',
       },
     ],
   },
@@ -138,6 +168,21 @@ const categories: VideoCategory[] = [
         duration: '0:40',
         src: assetPath('/videos/full-video.mp4'),
         thumbnail: assetPath('/car-thumb.png'),
+      },
+    ],
+  },
+  {
+    label: 'Other Ads',
+    videos: [
+      {
+        id: 14,
+        title: 'AES Basic Audio Engineering — Course Ad',
+        duration: '0:30',
+        src: 'https://player.vimeo.com/video/1218219450?badge=0&autopause=0&player_id=0&app_id=58479',
+        thumbnail: '',
+        isEmbed: true,
+        embedPadding: '56.25%',
+        embedTitle: 'AES BASIC AUDIO ENGINEERING AD',
       },
     ],
   },
@@ -215,7 +260,7 @@ export default function VideosProject() {
                             alt={video.title}
                             className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
                           />
-                        ) : (
+                        ) : !video.isEmbed ? (
                           <video
                             src={video.src}
                             className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
@@ -223,7 +268,7 @@ export default function VideosProject() {
                             muted
                             playsInline
                           />
-                        )}
+                        ) : null}
                         <div className="absolute inset-0 bg-black/40 opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex items-center justify-center">
                           <div className="w-14 h-14 rounded-full bg-white/20 backdrop-blur-sm border border-white/40 flex items-center justify-center">
                             <span className="text-white text-2xl ml-1">▶</span>
@@ -279,13 +324,16 @@ export default function VideosProject() {
                   </button>
                 </div>
                 {video.isEmbed ? (
-                  <iframe
-                    src={video.src}
-                    className="w-full rounded-xl"
-                    style={{ height: '400px' }}
-                    allow="autoplay"
-                    allowFullScreen
-                  />
+                  <div style={{ padding: `${video.embedPadding ?? '56.25%'} 0 0 0`, position: 'relative' }}>
+                    <iframe
+                      src={video.src}
+                      frameBorder="0"
+                      allow="autoplay; fullscreen; picture-in-picture; clipboard-write; encrypted-media; web-share"
+                      referrerPolicy="strict-origin-when-cross-origin"
+                      style={{ position: 'absolute', top: 0, left: 0, width: '100%', height: '100%' }}
+                      title={video.embedTitle ?? video.title}
+                    ></iframe>
+                  </div>
                 ) : (
                   <video src={video.src} controls autoPlay className="w-full rounded-xl" />
                 )}
