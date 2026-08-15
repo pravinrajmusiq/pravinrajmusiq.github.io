@@ -64,15 +64,19 @@ function applyCoverMapping(texture: THREE.Texture) {
 
   const aspect = img.width / img.height;
   texture.wrapS = texture.wrapT = THREE.ClampToEdgeWrapping;
-  texture.center.set(0.5, 0.5);
-  texture.offset.set(0, 0);
+  texture.flipY = true;
+  // Prefer offset/repeat only — center + repeat can sample empty UVs on some Three builds
+  texture.center.set(0, 0);
+  texture.rotation = 0;
 
   if (aspect > 1) {
     // Landscape — fill height, crop sides
     texture.repeat.set(1 / aspect, 1);
+    texture.offset.set((1 - 1 / aspect) / 2, 0);
   } else {
     // Portrait / square — fill width, crop top/bottom
     texture.repeat.set(1, aspect);
+    texture.offset.set(0, (1 - aspect) / 2);
   }
 
   texture.colorSpace = THREE.SRGBColorSpace;
@@ -101,20 +105,36 @@ function ProjectPlane({
   paths,
   position,
   rotationY,
+  mirrorX = false,
 }: {
   paths: readonly [string, string];
   position: [number, number, number];
   rotationY: number;
+  /** Flip U horizontally when the rest pose shows the back face to the camera */
+  mirrorX?: boolean;
 }) {
-  const textures = useLoader(THREE.TextureLoader, [...paths]);
+  // Pass the stable path tuple directly — spreading into a new array each render can remount loaders
+  const textures = useLoader(THREE.TextureLoader, paths as unknown as string[]);
   const materialRef = useRef<THREE.MeshBasicMaterial>(null);
 
   useEffect(() => {
-    textures.forEach((texture) => applyCoverMapping(texture));
-  }, [textures]);
+    textures.forEach((texture, i) => {
+      applyCoverMapping(texture);
+      if (import.meta.env.DEV) {
+        const img = texture.image as HTMLImageElement | undefined;
+        console.log(
+          `[ProjectPlane] loaded ${paths[i]} → ${img?.naturalWidth ?? img?.width}x${img?.naturalHeight ?? img?.height}`
+        );
+      }
+    });
+    if (materialRef.current) {
+      materialRef.current.map = textures[0];
+      materialRef.current.needsUpdate = true;
+    }
+  }, [textures, paths]);
 
   useFrame((state) => {
-    if (!materialRef.current) return;
+    if (!materialRef.current || textures.length < 2) return;
     const idx = Math.floor(state.clock.elapsedTime / TEXTURE_SWAP_SECONDS) % textures.length;
     const next = textures[idx];
     if (materialRef.current.map !== next) {
@@ -124,11 +144,16 @@ function ProjectPlane({
   });
 
   return (
-    <mesh position={position} rotation={[0, rotationY, 0]}>
+    <mesh
+      position={position}
+      rotation={[0, rotationY, 0]}
+      scale={[mirrorX ? -1 : 1, 1, 1]}
+    >
       <planeGeometry args={[PLANE_SIZE, PLANE_SIZE]} />
       <meshBasicMaterial
         ref={materialRef}
         map={textures[0]}
+        color="#ffffff"
         side={THREE.DoubleSide}
         toneMapped={false}
       />
@@ -170,7 +195,8 @@ function MediaRing() {
         const position: [number, number, number] = [x, 0, z];
         const rotationY = -angle;
 
-        // i=2 ≈ left wing (−X), i=0 ≈ right wing (+X)
+        // i=2 front-left (−X/+Z): visible left wing from default camera
+        // i=1 front-right (+X/+Z): visible right wing (i=0 is edge-on at +X and looked like a missing texture)
         if (i === 2) {
           return (
             <ProjectPlane
@@ -178,10 +204,11 @@ function MediaRing() {
               paths={LEFT_WING_PATHS}
               position={position}
               rotationY={rotationY}
+              mirrorX
             />
           );
         }
-        if (i === 0) {
+        if (i === 1) {
           return (
             <ProjectPlane
               key={i}
