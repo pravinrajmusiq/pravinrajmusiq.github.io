@@ -26,7 +26,7 @@ const posters: PosterItem[] = [
     image: assetPath('/org prg poster 1 new.jpg'),
     categories: [
       {
-        label: 'Official Poster',
+        label: 'Official Poster (studio artwork)',
         images: [
           assetPath('/org prg poster 1 new.jpg'),
           assetPath('/op2.jpg'),
@@ -34,14 +34,14 @@ const posters: PosterItem[] = [
         ],
       },
       {
-        label: 'Teaser Poster',
+        label: 'Teaser Poster (studio artwork)',
         images: [
           assetPath('/op-teaser1.jpg'),
           assetPath('/op-teaser2.jpg'),
         ],
       },
       {
-        label: 'Social Media Content',
+        label: 'Behind-the-Scenes Video & Social Media Content',
         images: [
           assetPath('/airpod_thumbnail.png'),
           assetPath('/bloopers_org_prg_1.png'),
