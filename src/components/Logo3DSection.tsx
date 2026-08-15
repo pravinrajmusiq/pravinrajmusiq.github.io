@@ -4,27 +4,9 @@ import { Canvas, useFrame, useLoader, useThree } from '@react-three/fiber';
 import * as THREE from 'three';
 import { assetPath } from '../utils/assetPath';
 
-// No external stock images — use gradient panels so the section stays professional and on-brand
-function createPanelTexture(hex: string) {
-  const size = 256;
-  const canvas = document.createElement('canvas');
-  canvas.width = size;
-  canvas.height = size;
-  const ctx = canvas.getContext('2d')!;
-  const gradient = ctx.createLinearGradient(0, 0, size, size);
-  gradient.addColorStop(0, hex);
-  gradient.addColorStop(1, '#1a1a1a');
-  ctx.fillStyle = gradient;
-  ctx.fillRect(0, 0, size, size);
-  const texture = new THREE.CanvasTexture(canvas);
-  texture.wrapS = texture.wrapT = THREE.ClampToEdgeWrapping;
-  return texture;
-}
-
-const PANEL_COLORS = ['#FFD700', '#FFA500', '#FF8C00', '#E67E22', '#D35400'];
-
 const RADIUS = 1.8;
 const PLANE_SIZE = 1.2;
+const MOBILE_GROUP_SCALE = 0.65;
 
 /** Left wing panel (negative X) — cycles every few seconds */
 const LEFT_WING_PATHS = [
@@ -37,6 +19,31 @@ const RIGHT_WING_PATHS = [
   assetPath('/culik_thumbnail_vertical.png'),
   assetPath('/series_poster_1.jpg'),
 ] as const;
+
+/** Remaining ring panels — offset start image so they don't all match at once */
+const PANEL_0_PATHS = [
+  assetPath('/op-teaser1.jpg'),
+  assetPath('/culik_thumbnail_vertical.png'),
+] as const;
+
+const PANEL_3_PATHS = [
+  assetPath('/series_poster_1.jpg'),
+  assetPath('/poster_thai_tamil.jpg'),
+] as const;
+
+const PANEL_4_PATHS = [
+  assetPath('/culik_thumbnail_vertical.png'),
+  assetPath('/op-teaser1.jpg'),
+] as const;
+
+/** Per-panel texture cycle + mirror when outward normal faces away from default +Z camera */
+const PANEL_CONFIG: { paths: readonly [string, string]; mirrorX?: boolean }[] = [
+  { paths: PANEL_0_PATHS },
+  { paths: RIGHT_WING_PATHS },
+  { paths: LEFT_WING_PATHS, mirrorX: true },
+  { paths: PANEL_3_PATHS, mirrorX: true },
+  { paths: PANEL_4_PATHS },
+];
 
 const TEXTURE_SWAP_SECONDS = 4;
 
@@ -81,24 +88,6 @@ function applyCoverMapping(texture: THREE.Texture) {
 
   texture.colorSpace = THREE.SRGBColorSpace;
   texture.needsUpdate = true;
-}
-
-function GradientPlane({
-  color,
-  position,
-  rotationY,
-}: {
-  color: string;
-  position: [number, number, number];
-  rotationY: number;
-}) {
-  const texture = useMemo(() => createPanelTexture(color), [color]);
-  return (
-    <mesh position={position} rotation={[0, rotationY, 0]}>
-      <planeGeometry args={[PLANE_SIZE, PLANE_SIZE]} />
-      <meshBasicMaterial map={texture} side={THREE.DoubleSide} toneMapped={false} />
-    </mesh>
-  );
 }
 
 function ProjectPlane({
@@ -167,6 +156,8 @@ function MediaRing() {
 
   useFrame((state) => {
     if (groupRef.current) {
+      const scale = state.size.width < 768 ? MOBILE_GROUP_SCALE : 1;
+      groupRef.current.scale.setScalar(scale);
       groupRef.current.rotation.x = Math.sin(state.clock.elapsedTime * 0.3) * 0.2;
       groupRef.current.rotation.y += 0.01;
       groupRef.current.position.y = Math.sin(state.clock.elapsedTime) * 0.1;
@@ -187,40 +178,22 @@ function MediaRing() {
           roughness={0.3}
         />
       </mesh>
-      {/* Panels around the torus — left/right wings use project textures; others keep gradients */}
-      {PANEL_COLORS.map((color, i) => {
-        const angle = (i / PANEL_COLORS.length) * Math.PI * 2;
+      {/* All five ring panels use cycling project textures (offset start image per panel) */}
+      {PANEL_CONFIG.map((config, i) => {
+        const angle = (i / PANEL_CONFIG.length) * Math.PI * 2;
         const x = Math.cos(angle) * RADIUS;
         const z = Math.sin(angle) * RADIUS;
         const position: [number, number, number] = [x, 0, z];
         const rotationY = -angle;
 
-        // i=2 front-left (−X/+Z): visible left wing from default camera
-        // i=1 front-right (+X/+Z): visible right wing (i=0 is edge-on at +X and looked like a missing texture)
-        if (i === 2) {
-          return (
-            <ProjectPlane
-              key={i}
-              paths={LEFT_WING_PATHS}
-              position={position}
-              rotationY={rotationY}
-              mirrorX
-            />
-          );
-        }
-        if (i === 1) {
-          return (
-            <ProjectPlane
-              key={i}
-              paths={RIGHT_WING_PATHS}
-              position={position}
-              rotationY={rotationY}
-            />
-          );
-        }
-
         return (
-          <GradientPlane key={i} color={color} position={position} rotationY={rotationY} />
+          <ProjectPlane
+            key={i}
+            paths={config.paths}
+            position={position}
+            rotationY={rotationY}
+            mirrorX={config.mirrorX}
+          />
         );
       })}
     </group>
