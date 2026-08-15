@@ -12,13 +12,13 @@ const services = [
     number: '02',
     title: 'Video Editing',
     description: 'I create high-quality edited videos from raw footage to final delivery. Whether it\'s promotional videos, social media content, or creative storytelling, I handle editing and post-production to bring your vision to life.',
-    image: assetPath('/vid.png'),
+    image: assetPath('/timeline-edit-1.png'),
   },
   {
     number: '03',
     title: 'Motion Graphics',
     description: 'I create dynamic animated graphics and visual effects that captivate audiences. From animated logos and title sequences to explainer videos and social media content, I bring static designs to life with smooth, professional motion.',
-    image: assetPath('/yh.png'),
+    image: assetPath('/timeline-edit-2.png'),
   },
 ];
 
