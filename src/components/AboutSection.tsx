@@ -44,24 +44,6 @@ export function AboutSection() {
           >
             Graphic Designer and Video Editor with a Bachelor's in Graphic Design and hands-on experience across branding, motion graphics, and video production — from a feature film production to full brand identity systems. I bring ideas from concept to final delivery, whether that's as part of a team or on freelance projects.
           </motion.p>
-
-          <div className="flex flex-wrap gap-4 md:gap-6">
-            <motion.button
-              onClick={() => document.getElementById('services')?.scrollIntoView({ behavior: 'smooth' })}
-              whileHover={{ x: 10 }}
-              className="text-[var(--text-primary)] flex items-center gap-2 group touch-action-manipulation"
-            >
-              → Services
-            </motion.button>
-            <motion.a
-              href={assetPath('/resume/Pravinraj-Resume.pdf')}
-              download
-              whileHover={{ x: 10 }}
-              className="text-[var(--text-primary)] flex items-center gap-2 touch-action-manipulation"
-            >
-              → Download Resume
-            </motion.a>
-          </div>
         </motion.div>
 
         <motion.div
