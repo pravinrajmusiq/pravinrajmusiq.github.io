@@ -1,6 +1,6 @@
 import { useRef, useMemo, useEffect } from 'react';
 import { motion } from 'framer-motion';
-import { Canvas, useFrame, useLoader } from '@react-three/fiber';
+import { Canvas, useFrame, useLoader, useThree } from '@react-three/fiber';
 import * as THREE from 'three';
 import { assetPath } from '../utils/assetPath';
 
@@ -227,12 +227,27 @@ function MediaRing() {
   );
 }
 
+/** Pull the camera back on narrow viewports so the ring fits without cropping. */
+function ResponsiveCamera() {
+  const { camera, size } = useThree();
+
+  useEffect(() => {
+    const cam = camera as THREE.PerspectiveCamera;
+    const mobile = size.width < 768;
+    cam.position.set(0, 0, mobile ? 7.25 : 5);
+    cam.fov = mobile ? 52 : 50;
+    cam.updateProjectionMatrix();
+  }, [camera, size.width]);
+
+  return null;
+}
+
 export function Logo3DSection() {
   return (
     <section className="min-h-screen bg-[var(--page-bg)] flex items-center justify-center relative overflow-x-hidden overflow-y-visible">
       <div className="absolute inset-0 flex flex-col z-10 pointer-events-none min-h-screen">
-        {/* Top: "Let's Work" with space below so it never overlaps 3D */}
-        <div className="flex-none flex flex-col items-center justify-end pt-20 md:pt-28 pb-16 md:pb-20 px-6 -translate-y-8 md:-translate-y-12">
+        {/* Top: clear fixed nav on mobile (stacked links); keep desktop pull-up */}
+        <div className="flex-none flex flex-col items-center justify-end pt-36 sm:pt-28 md:pt-28 pb-12 md:pb-20 px-6 translate-y-0 md:-translate-y-12">
           <motion.h2
             initial={{ opacity: 0, y: -20 }}
             whileInView={{ opacity: 1, y: 0 }}
@@ -253,11 +268,12 @@ export function Logo3DSection() {
           </motion.p>
         </div>
         {/* Middle: empty so 3D animation has a clear band with no text overlap */}
-        <div className="flex-1 min-h-[280px] md:min-h-[340px]" />
+        <div className="flex-1 min-h-[240px] sm:min-h-[280px] md:min-h-[340px]" />
       </div>
 
       <div className="absolute inset-0 h-full w-full">
         <Canvas camera={{ position: [0, 0, 5], fov: 50 }}>
+          <ResponsiveCamera />
           <ambientLight intensity={0.5} />
           <pointLight position={[10, 10, 10]} intensity={1} />
           <pointLight position={[-10, -10, -10]} color="#00ffff" intensity={0.5} />
