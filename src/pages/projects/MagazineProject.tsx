@@ -15,6 +15,7 @@ type MagazineItem = {
   title: string;
   image: string;
   categories: MagazineCategory[];
+  disclaimer?: string;
 };
 
 const magazines: MagazineItem[] = [
@@ -38,6 +39,7 @@ const magazines: MagazineItem[] = [
     title: 'Film Set Vol.1',
     image: assetPath('/magazine.png'),
     categories: [{ label: 'Film Set Vol.1', images: [assetPath('/magazine.png')] }],
+    disclaimer: 'Personal fan project — not for commercial use',
   },
   {
     id: 4,
@@ -135,6 +137,11 @@ export default function MagazineProject() {
                     {magazine.title}
                   </h3>
                   <p className="text-[var(--text-muted)] text-xs mt-0.5">Pravinraj</p>
+                  {magazine.disclaimer && (
+                    <p className="text-[var(--text-muted)] text-xs mt-0.5 opacity-70">
+                      {magazine.disclaimer}
+                    </p>
+                  )}
                 </div>
               </div>
             </motion.div>
