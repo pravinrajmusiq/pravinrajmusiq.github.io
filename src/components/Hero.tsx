@@ -89,7 +89,7 @@ export function Hero() {
             transition={{ duration: 0.8, delay: 0.7 }}
             className="mt-4 md:mt-6 max-w-2xl text-base md:text-lg text-[var(--text-muted)] leading-relaxed"
           >
-            Graphic Designer and Video Editor with hands-on experience in branding, motion graphics, and campaign production. Currently seeking full-time opportunities in graphic design, branding, or motion design roles. Open to freelance projects as well.
+            Currently seeking full-time opportunities in graphic design, branding, or motion design. Open to freelance work as well.
           </motion.p>
 
           <div className="mt-10 md:mt-12 flex flex-wrap gap-4">
