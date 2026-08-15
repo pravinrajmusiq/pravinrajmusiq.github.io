@@ -32,11 +32,7 @@ export function AboutSection() {
             viewport={{ once: true }}
             transition={{ duration: 0.6 }}
           >
-            Video Editing.
-            <br />
-            Graphic Design and
-            <br />
-            Creative Solutions.
+            Turning Ideas Into Visual Impact.
           </motion.h2>
 
           <motion.p
