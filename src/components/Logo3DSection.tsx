@@ -1,7 +1,8 @@
-import { useRef, useMemo } from 'react';
+import { useRef, useMemo, useEffect } from 'react';
 import { motion } from 'framer-motion';
-import { Canvas, useFrame } from '@react-three/fiber';
+import { Canvas, useFrame, useLoader } from '@react-three/fiber';
 import * as THREE from 'three';
+import { assetPath } from '../utils/assetPath';
 
 // No external stock images — use gradient panels so the section stays professional and on-brand
 function createPanelTexture(hex: string) {
@@ -25,6 +26,20 @@ const PANEL_COLORS = ['#FFD700', '#FFA500', '#FF8C00', '#E67E22', '#D35400'];
 const RADIUS = 1.8;
 const PLANE_SIZE = 1.2;
 
+/** Left wing panel (negative X) — cycles every few seconds */
+const LEFT_WING_PATHS = [
+  assetPath('/poster_thai_tamil.jpg'),
+  assetPath('/op-teaser1.jpg'),
+] as const;
+
+/** Right wing panel (positive X) — cycles every few seconds */
+const RIGHT_WING_PATHS = [
+  assetPath('/culik_thumbnail_vertical.png'),
+  assetPath('/series_poster_1.jpg'),
+] as const;
+
+const TEXTURE_SWAP_SECONDS = 4;
+
 function createGoldGradientTexture() {
   const size = 256;
   const canvas = document.createElement('canvas');
@@ -42,6 +57,28 @@ function createGoldGradientTexture() {
   return texture;
 }
 
+/** Cover-crop portrait/landscape textures onto a square panel without stretching. */
+function applyCoverMapping(texture: THREE.Texture) {
+  const img = texture.image as HTMLImageElement | ImageBitmap | undefined;
+  if (!img || !('width' in img) || !img.width || !img.height) return;
+
+  const aspect = img.width / img.height;
+  texture.wrapS = texture.wrapT = THREE.ClampToEdgeWrapping;
+  texture.center.set(0.5, 0.5);
+  texture.offset.set(0, 0);
+
+  if (aspect > 1) {
+    // Landscape — fill height, crop sides
+    texture.repeat.set(1 / aspect, 1);
+  } else {
+    // Portrait / square — fill width, crop top/bottom
+    texture.repeat.set(1, aspect);
+  }
+
+  texture.colorSpace = THREE.SRGBColorSpace;
+  texture.needsUpdate = true;
+}
+
 function GradientPlane({
   color,
   position,
@@ -56,6 +93,45 @@ function GradientPlane({
     <mesh position={position} rotation={[0, rotationY, 0]}>
       <planeGeometry args={[PLANE_SIZE, PLANE_SIZE]} />
       <meshBasicMaterial map={texture} side={THREE.DoubleSide} toneMapped={false} />
+    </mesh>
+  );
+}
+
+function ProjectPlane({
+  paths,
+  position,
+  rotationY,
+}: {
+  paths: readonly [string, string];
+  position: [number, number, number];
+  rotationY: number;
+}) {
+  const textures = useLoader(THREE.TextureLoader, [...paths]);
+  const materialRef = useRef<THREE.MeshBasicMaterial>(null);
+
+  useEffect(() => {
+    textures.forEach((texture) => applyCoverMapping(texture));
+  }, [textures]);
+
+  useFrame((state) => {
+    if (!materialRef.current) return;
+    const idx = Math.floor(state.clock.elapsedTime / TEXTURE_SWAP_SECONDS) % textures.length;
+    const next = textures[idx];
+    if (materialRef.current.map !== next) {
+      materialRef.current.map = next;
+      materialRef.current.needsUpdate = true;
+    }
+  });
+
+  return (
+    <mesh position={position} rotation={[0, rotationY, 0]}>
+      <planeGeometry args={[PLANE_SIZE, PLANE_SIZE]} />
+      <meshBasicMaterial
+        ref={materialRef}
+        map={textures[0]}
+        side={THREE.DoubleSide}
+        toneMapped={false}
+      />
     </mesh>
   );
 }
@@ -86,13 +162,36 @@ function MediaRing() {
           roughness={0.3}
         />
       </mesh>
-      {/* Gradient panels around the torus — gold/orange palette, no external images */}
+      {/* Panels around the torus — left/right wings use project textures; others keep gradients */}
       {PANEL_COLORS.map((color, i) => {
         const angle = (i / PANEL_COLORS.length) * Math.PI * 2;
         const x = Math.cos(angle) * RADIUS;
         const z = Math.sin(angle) * RADIUS;
         const position: [number, number, number] = [x, 0, z];
         const rotationY = -angle;
+
+        // i=2 ≈ left wing (−X), i=0 ≈ right wing (+X)
+        if (i === 2) {
+          return (
+            <ProjectPlane
+              key={i}
+              paths={LEFT_WING_PATHS}
+              position={position}
+              rotationY={rotationY}
+            />
+          );
+        }
+        if (i === 0) {
+          return (
+            <ProjectPlane
+              key={i}
+              paths={RIGHT_WING_PATHS}
+              position={position}
+              rotationY={rotationY}
+            />
+          );
+        }
+
         return (
           <GradientPlane key={i} color={color} position={position} rotationY={rotationY} />
         );
