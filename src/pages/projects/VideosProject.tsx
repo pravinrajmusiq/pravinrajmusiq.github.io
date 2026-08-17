@@ -85,7 +85,7 @@ const categories: VideoCategory[] = [
         title: 'BTS Premium — Orang Perang',
         duration: '0:30',
         src: 'https://player.vimeo.com/video/1218213327?badge=0&autopause=0&player_id=0&app_id=58479',
-        thumbnail: '',
+        thumbnail: assetPath('/bts_premium_thumb.jpg'),
         isEmbed: true,
         embedPadding: '56.25%',
         embedTitle: 'BTS PREMIUM ORANG PERANG',
