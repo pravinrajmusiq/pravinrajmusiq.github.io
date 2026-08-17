@@ -217,10 +217,10 @@ function ResponsiveCamera() {
 
 export function Logo3DSection() {
   return (
-    <section className="min-h-screen bg-[var(--page-bg)] flex items-center justify-center relative overflow-x-hidden overflow-y-visible">
-      <div className="absolute inset-0 flex flex-col z-10 pointer-events-none min-h-screen">
-        {/* Top: clear fixed nav on mobile (stacked links); keep desktop pull-up */}
-        <div className="flex-none flex flex-col items-center justify-end pt-36 sm:pt-28 md:pt-28 pb-12 md:pb-20 px-6 translate-y-0 md:-translate-y-12">
+    <section className="min-h-[85vh] md:min-h-screen bg-[var(--page-bg)] flex items-center justify-center relative overflow-x-hidden overflow-y-visible">
+      <div className="absolute inset-0 flex flex-col z-10 pointer-events-none">
+        {/* Top: clear fixed nav on mobile (stacked/wrapped links); keep desktop pull-up */}
+        <div className="flex-none flex flex-col items-center justify-end pt-52 sm:pt-28 md:pt-28 pb-12 md:pb-20 px-6 translate-y-0 md:-translate-y-12">
           <motion.h2
             initial={{ opacity: 0, y: -20 }}
             whileInView={{ opacity: 1, y: 0 }}
@@ -241,7 +241,7 @@ export function Logo3DSection() {
           </motion.p>
         </div>
         {/* Middle: empty so 3D animation has a clear band with no text overlap */}
-        <div className="flex-1 min-h-[240px] sm:min-h-[280px] md:min-h-[340px]" />
+        <div className="flex-1 min-h-[180px] sm:min-h-[280px] md:min-h-[340px]" />
       </div>
 
       <div className="absolute inset-0 h-full w-full">
