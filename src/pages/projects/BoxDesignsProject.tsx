@@ -53,7 +53,7 @@ const boxes: BoxItem[] = [
   {
     id: 5,
     title: 'McD Box',
-    image: assetPath('/box_mcd_open.jpg'),
+    image: assetPath('/box_mcd_handle.jpg'),
     categories: [
       {
         label: 'McD Box',
