@@ -50,7 +50,7 @@ const categories: VideoCategory[] = [
         title: 'Gardenia Ad',
         duration: '0:30',
         src: 'https://player.vimeo.com/video/1218221679?badge=0&autopause=0&player_id=0&app_id=58479',
-        thumbnail: '',
+        thumbnail: assetPath('/gardenia_thumb.jpg'),
         isEmbed: true,
         embedPadding: '56.25%',
         embedTitle: 'GARDENIA VIDEO AD',
