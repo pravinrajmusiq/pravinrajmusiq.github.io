@@ -54,6 +54,7 @@ export function AboutSection() {
           <img
             src={assetPath('/my.jpg')}
             alt="Workspace"
+            loading="lazy"
             className="w-full h-full object-cover grayscale hover:grayscale-0 transition-all duration-700"
           />
           <motion.div

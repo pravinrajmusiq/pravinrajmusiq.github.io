@@ -1,5 +1,10 @@
 import { motion } from 'framer-motion';
+import { useEffect, useState } from 'react';
+import { useInView } from 'react-intersection-observer';
 import { assetPath } from '../utils/assetPath';
+
+const GARDENIA_IFRAME_SRC =
+  'https://player.vimeo.com/video/1218221679?background=1&autoplay=1&loop=1&byline=0&title=0&muted=1';
 
 const services = [
   {
@@ -28,6 +33,15 @@ function ServiceCard({
   service: (typeof services)[0];
   index: number;
 }) {
+  const [shouldLoadIframe, setShouldLoadIframe] = useState(false);
+  const [mediaRef, mediaInView] = useInView({ rootMargin: '200px 0px', triggerOnce: true });
+
+  useEffect(() => {
+    if (mediaInView && service.number === '03') {
+      setShouldLoadIframe(true);
+    }
+  }, [mediaInView, service.number]);
+
   return (
     <motion.div
       initial={{ opacity: 0, y: 100 }}
@@ -79,23 +93,27 @@ function ServiceCard({
       </div>
 
       <motion.div
+        ref={mediaRef}
         whileHover={{ scale: 1.03 }}
         transition={{ duration: 0.4 }}
         className="relative h-[280px] md:h-[400px] rounded-2xl overflow-hidden group cursor-pointer order-first md:order-none"
       >
         {service.number === '03' ? (
-          <iframe
-            src="https://player.vimeo.com/video/1218221679?background=1&autoplay=1&loop=1&byline=0&title=0&muted=1"
-            frameBorder="0"
-            allow="autoplay; fullscreen"
-            className="absolute inset-0"
-            style={{ width: '100%', height: '100%', objectFit: 'cover' }}
-            title="Gardenia Ad - Motion Graphics"
-          />
+          shouldLoadIframe ? (
+            <iframe
+              src={GARDENIA_IFRAME_SRC}
+              frameBorder="0"
+              allow="autoplay; fullscreen"
+              className="absolute inset-0"
+              style={{ width: '100%', height: '100%', objectFit: 'cover' }}
+              title="Gardenia Ad - Motion Graphics"
+            />
+          ) : null
         ) : (
           <img
             src={service.image}
             alt={service.title}
+            loading="lazy"
             className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110"
           />
         )}

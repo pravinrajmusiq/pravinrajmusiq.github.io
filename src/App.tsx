@@ -1,15 +1,16 @@
-import { useEffect, useRef } from 'react';
+import { lazy, Suspense, useEffect, useRef } from 'react';
 import { BrowserRouter, Routes, Route } from 'react-router-dom';
 import Lenis from 'lenis';
 import { CustomCursor } from './components/ui/CustomCursor';
 import { ThemeToggle } from './components/ui/ThemeToggle';
 import HomePage from './pages/HomePage';
-import VideosProject from './pages/projects/VideosProject';
-import PosterProject from './pages/projects/PosterProject';
-import MagazineProject from './pages/projects/MagazineProject';
-import BoxDesignProject from './pages/projects/BoxDesignProject';
-import BoxDesignsProject from './pages/projects/BoxDesignsProject';
-import BrandingProject from './pages/projects/BrandingProject';
+
+const VideosProject = lazy(() => import('./pages/projects/VideosProject'));
+const PosterProject = lazy(() => import('./pages/projects/PosterProject'));
+const MagazineProject = lazy(() => import('./pages/projects/MagazineProject'));
+const BoxDesignProject = lazy(() => import('./pages/projects/BoxDesignProject'));
+const BoxDesignsProject = lazy(() => import('./pages/projects/BoxDesignsProject'));
+const BrandingProject = lazy(() => import('./pages/projects/BrandingProject'));
 
 function App() {
   const lenisRef = useRef<Lenis | null>(null);
@@ -46,15 +47,17 @@ function App() {
       <div className="bg-[var(--page-bg)] text-[var(--text-primary)]">
         <ThemeToggle />
         <CustomCursor />
-        <Routes>
-          <Route path="/" element={<HomePage />} />
-          <Route path="/projects/videos" element={<VideosProject />} />
-          <Route path="/projects/poster" element={<PosterProject />} />
-          <Route path="/projects/magazine" element={<MagazineProject />} />
-          <Route path="/projects/box-design" element={<BoxDesignProject />} />
-          <Route path="/projects/box-designs" element={<BoxDesignsProject />} />
-          <Route path="/projects/branding" element={<BrandingProject />} />
-        </Routes>
+        <Suspense fallback={<div className="min-h-screen bg-[var(--page-bg)]" aria-hidden="true" />}>
+          <Routes>
+            <Route path="/" element={<HomePage />} />
+            <Route path="/projects/videos" element={<VideosProject />} />
+            <Route path="/projects/poster" element={<PosterProject />} />
+            <Route path="/projects/magazine" element={<MagazineProject />} />
+            <Route path="/projects/box-design" element={<BoxDesignProject />} />
+            <Route path="/projects/box-designs" element={<BoxDesignsProject />} />
+            <Route path="/projects/branding" element={<BrandingProject />} />
+          </Routes>
+        </Suspense>
         <div className="grain" aria-hidden="true" />
       </div>
     </BrowserRouter>
