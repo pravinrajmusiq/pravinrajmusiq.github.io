@@ -100,7 +100,7 @@ const categories: VideoCategory[] = [
         title: 'Social Media Reel',
         duration: '0:20',
         src: assetPath('/videos/0519.mp4'),
-        thumbnail: '',
+        thumbnail: assetPath('/social_media_reel_thumb.jpg'),
       },
       {
         id: 11,
