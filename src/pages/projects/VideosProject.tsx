@@ -179,7 +179,7 @@ const categories: VideoCategory[] = [
         title: 'AES Basic Audio Engineering — Course Ad',
         duration: '0:30',
         src: 'https://player.vimeo.com/video/1218219450?badge=0&autopause=0&player_id=0&app_id=58479',
-        thumbnail: '',
+        thumbnail: assetPath('/aes_thumb.jpg'),
         isEmbed: true,
         embedPadding: '56.25%',
         embedTitle: 'AES BASIC AUDIO ENGINEERING AD',
