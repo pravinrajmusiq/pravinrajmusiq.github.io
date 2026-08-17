@@ -6,7 +6,7 @@ const services = [
     number: '01',
     title: 'Graphic Designer',
     description: 'I create compelling visual designs that communicate your brand message effectively. From logos and branding to print materials and digital graphics, I deliver designs that stand out and resonate with your audience.',
-    image: assetPath('/edit.png'),
+    image: assetPath('/branding_infographic.jpg'),
   },
   {
     number: '02',
