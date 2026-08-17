@@ -18,7 +18,6 @@ const services = [
     number: '03',
     title: 'Motion Graphics',
     description: 'I create dynamic animated graphics and visual effects that captivate audiences. From animated logos and title sequences to explainer videos and social media content, I bring static designs to life with smooth, professional motion.',
-    image: assetPath('/timeline-edit-2.png'),
   },
 ];
 
@@ -35,7 +34,7 @@ function ServiceCard({
       whileInView={{ opacity: 1, y: 0 }}
       transition={{ duration: 0.8, delay: index * 0.2 }}
       viewport={{ once: true, margin: '-200px' }}
-      className="grid md:grid-cols-2 gap-12 md:gap-16 items-center mb-24 md:mb-32 relative"
+      className="grid md:grid-cols-2 gap-12 md:gap-16 items-center mb-24 md:mb-32 relative pt-20 md:pt-0"
     >
       <div className="absolute top-0 left-0 w-8 md:w-12 h-8 md:h-12 border-l-2 border-t-2 border-[var(--border-color)]" />
       <div className="absolute bottom-0 right-0 w-8 md:w-12 h-8 md:h-12 border-r-2 border-b-2 border-[var(--border-color)]" />
@@ -84,11 +83,22 @@ function ServiceCard({
         transition={{ duration: 0.4 }}
         className="relative h-[280px] md:h-[400px] rounded-2xl overflow-hidden group cursor-pointer order-first md:order-none"
       >
-        <img
-          src={service.image}
-          alt={service.title}
-          className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110"
-        />
+        {service.number === '03' ? (
+          <iframe
+            src="https://player.vimeo.com/video/1218221679?background=1&autoplay=1&loop=1&byline=0&title=0&muted=1"
+            frameBorder="0"
+            allow="autoplay; fullscreen"
+            className="absolute inset-0"
+            style={{ width: '100%', height: '100%', objectFit: 'cover' }}
+            title="Gardenia Ad - Motion Graphics"
+          />
+        ) : (
+          <img
+            src={service.image}
+            alt={service.title}
+            className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110"
+          />
+        )}
         <div className="absolute inset-0 bg-gradient-to-t from-black/80 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500" />
         <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 opacity-0 group-hover:opacity-100 transition-opacity duration-300">
           <div className="w-14 h-14 md:w-16 md:h-16 rounded-full bg-white/20 backdrop-blur-sm flex items-center justify-center">
